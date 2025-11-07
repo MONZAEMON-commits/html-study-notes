@@ -1,4 +1,35 @@
 # HTML/CSS webデザイン
+- [HTML/CSS webデザイン](#htmlcss-webデザイン)
+  - [HTMLの基本](#htmlの基本)
+  - [マークアップについて](#マークアップについて)
+    - [基本のタグ](#基本のタグ)
+    - [3種のリストを使い分ける](#3種のリストを使い分ける)
+    - [リンク部のマークアップ](#リンク部のマークアップ)
+    - [🧩 href 属性の主な指定パターン](#-href-属性の主な指定パターン)
+    - [画像表示](#画像表示)
+    - [🧩 HTMLでよく使う画像形式まとめ](#-htmlでよく使う画像形式まとめ)
+    - [強調したい文章](#強調したい文章)
+  - [CSSの基本](#cssの基本)
+    - [基本構文](#基本構文)
+    - [ボックスモデルの理解](#ボックスモデルの理解)
+    - [ブロックボックスとインラインボックスについて](#ブロックボックスとインラインボックスについて)
+    - [文字色の指定 — color](#文字色の指定--color)
+    - [フォントの種類 — font-family](#フォントの種類--font-family)
+    - [文字サイズ — font-size](#文字サイズ--font-size)
+    - [太さ — font-weight](#太さ--font-weight)
+    - [行の高さ — line-height](#行の高さ--line-height)
+    - [フォントスタイル・装飾](#フォントスタイル装飾)
+    - [font ショートハンド](#font-ショートハンド)
+    - [文字揃え — text-align](#文字揃え--text-align)
+    - [まとめ](#まとめ)
+    - [背景色 — background-color](#背景色--background-color)
+    - [背景画像 — background-image](#背景画像--background-image)
+    - [background-repeat（背景画像の繰り返し）](#background-repeat背景画像の繰り返し)
+    - [background-position（背景画像の位置）](#background-position背景画像の位置)
+    - [background-size（背景画像のサイズ）](#background-size背景画像のサイズ)
+    - [background-attachment（背景の固定）](#background-attachment背景の固定)
+    - [backgroundショートハンド](#backgroundショートハンド)
+
 ## HTMLの基本
 - 基本の書き方<br>
     <タグ名>～</タグ名>
@@ -176,8 +207,6 @@ CSSは次の順で「どれを適用するか」を判断します<br>
 | **border**  | 枠線そのもの                         | `border: 1px solid black;` |
 | **margin**  | 要素の外側の余白（他の要素との間隔） | `margin: 20px;`            |
 
-![alt text](image-1.png)
-
 ### ブロックボックスとインラインボックスについて
 📦 1. すべての要素は「ボックス」でできている。<br>
 HTMLの要素はすべて「ボックス」として描画されます。<br>
@@ -194,18 +223,19 @@ HTMLの要素はすべて「ボックス」として描画されます。<br>
 - margin や padding が上下左右すべて有効
 - width, height を指定できる<br>
 
-▶ 代表的なタグ
+▶ 代表的なタグ<br>
 `<div>, <p>, <h1>～<h6>, <section>, <ul>, <ol>, <table>` など<br>
+
 🧩 3. インラインボックス（Inline Box）<br>
 ▶ 特徴
 - 横方向に並ぶ（文章の流れに沿う）
 - width や height は指定しても効かない（文字サイズや内容で決まる）
 - margin や padding の上下は効かない（左右のみ有効）
-- 改行を入れない限り、同じ行に並ぶ
-▶ 代表的なタグ
-`<span>, <a>, <strong>, <em>, <b>, <i>, <img>` など
+- 改行を入れない限り、同じ行に並ぶ<br>
+▶ 代表的なタグ<br>
+`<span>, <a>, <strong>, <em>, <b>, <i>, <img>` など<br>
 
-### 文字色の指定 — color
+### <a id="color"></a>文字色の指定 — color
 書き方
 ```css
 p {
@@ -220,7 +250,7 @@ p {
 | 16進数     | `color: #1e90ff;`                                           | `#RRGGBB` 形式（正確な色）         |
 | RGB / RGBA | `color: rgb(30,144,255);`<br>`color: rgba(30,144,255,0.5);` | `rgba`は透明度も指定できる（0～1） |
 
-### フォントの種類 — font-family
+### <a id="font-family"></a>フォントの種類 — font-family
 ```css
 p {
   font-family: "Noto Sans JP", "Meiryo", sans-serif;
@@ -231,7 +261,7 @@ p {
 - スペースを含むフォント名は "ダブルクォート" で囲む
 - 最後は汎用フォント（sans-serif / serif / monospace）で保険
 
-### 文字サイズ — font-size
+### <a id="font-size"></a>文字サイズ — font-size
 ```css
 p {
   font-size: 16px;
@@ -245,7 +275,7 @@ p {
 | `%`   | 親要素に対する割合           | レスポンシブ対応に便利 |
 | `rem` | ルート(html)要素を基準       | 全体スケール調整に便利 |
 
-### 太さ — font-weight
+### <a id="font-weight"></a>太さ — font-weight
 ```css
 p {
   font-weight: bold;
@@ -257,7 +287,7 @@ p {
 | `bold`   | 太字（700）                              |
 | 数値     | 100～900で細かく指定（対応フォントのみ） |
 
-### 行の高さ — line-height
+### <a id="line-height"></a>行の高さ — line-height
 ```css
 p {
   line-height: 1.6;
@@ -287,12 +317,14 @@ em {
 font: italic bold 16px/1.5 "Noto Sans JP", sans-serif;
 ```
 fontショートハンドまとめ
-| 項目       | 内容                                                       | 例                                   |
-| :--------- | :--------------------------------------------------------- | :----------------------------------- |
-| 書式       | `[style] [variant] [weight] [size]/[line-height] [family]` |                                      |
-| 最低限必要 | `font-size` と `font-family`                               | `font: 16px "Noto Sans JP";`         |
-| よく使う形 | `font: italic bold 16px/1.5 "Noto Sans JP";`               |                                      |
-| 注意点     | 未指定項目はリセットされる                                 | `font-weight` などが消える可能性あり |
+| プロパティ     | ショートハンドでの位置      | 例                           |
+| :------------- | :-------------------------- | :--------------------------- |
+| `font-style`   | 最初（任意）                | `italic`                     |
+| `font-variant` | 2番目（任意）               | `small-caps`                 |
+| `font-weight`  | 3番目（任意）               | `bold` / `700`               |
+| `font-size`    | 必須（`line-height`より前） | `16px` / `1rem`              |
+| `line-height`  | `/` の後（任意）            | `1.5` / `24px`               |
+| `font-family`  | 最後（必須）                | `"Noto Sans JP", sans-serif` |
 
 ### 文字揃え — text-align
 ```css
@@ -309,15 +341,16 @@ p {
 
 
 ### まとめ
-| 分類     | プロパティ                      | 主な値                             |
-| :------- | :------------------------------ | :--------------------------------- |
-| 文字の色 | `color`                         | `#333`, `red`, `rgba(255,0,0,0.5)` |
-| フォント | `font-family`                   | `"Noto Sans JP"`, `sans-serif`     |
-| サイズ   | `font-size`                     | `16px`, `1.2rem`                   |
-| 太さ     | `font-weight`                   | `normal`, `bold`, `700`            |
-| 揃え     | `text-align`                    | `left`, `center`, `right`          |
-| 行間     | `line-height`                   | `1.5`, `24px`                      |
-| 装飾     | `text-decoration`, `font-style` | `underline`, `italic`              |
+| 分類     | プロパティ                                                                               | 主な値                             |
+| :------- | :--------------------------------------------------------------------------------------- | :--------------------------------- |
+| 文字の色 | <a href="#color">`color`</a>                                                             | `#333`, `red`, `rgba(255,0,0,0.5)` |
+| フォント | <a href="#font-family">`font-family`</a>                                                 | `"Noto Sans JP"`, `sans-serif`     |
+| サイズ   | <a href="#font-size">`font-size`</a>                                                     | `16px`, `1.2rem`                   |
+| 太さ     | <a href="#font-weight">`font-weight`</a>                                                 | `normal`, `bold`, `700`            |
+| 揃え     | <a href="#text-align">`text-align`</a>                                                   | `left`, `center`, `right`          |
+| 行間     | <a href="#line-height">`line-height`</a>                                                 | `1.5`, `24px`                      |
+| 装飾     | <a href="#text-decoration">`text-decoration`</a>, <a href="#font-style">`font-style`</a> | `underline`, `italic`              |
+<a href="#"></a>
 
 ### <a id="background-color"></a>背景色 — background-color
 ```css
@@ -327,7 +360,7 @@ div {
 ```
 ポイント
 - 要素全体（padding＋content）に色がつく
-- 色の指定方法は color と同じ（名前・16進数・RGBなど）
+- 色の指定方法は <a href="#color">color</a> と同じ（名前・16進数・RGBなど）
 
 ### <a id="background-image"></a>背景画像 — background-image
 ```css
