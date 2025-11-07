@@ -204,3 +204,207 @@ HTMLの要素はすべて「ボックス」として描画されます。<br>
 - 改行を入れない限り、同じ行に並ぶ
 ▶ 代表的なタグ
 `<span>, <a>, <strong>, <em>, <b>, <i>, <img>` など
+
+### 文字色の指定 — color
+書き方
+```css
+p {
+  color: red;              /* 色名 */
+  /* color: #ff0000; */    /* 16進数 */
+  /* color: rgb(255,0,0); */ /* RGB値 */
+}
+```
+| 方法       | 例                                                          | 説明                               |
+| :--------- | :---------------------------------------------------------- | :--------------------------------- |
+| 名前指定   | `color: blue;`                                              | CSSで定義された色名（約140種類）   |
+| 16進数     | `color: #1e90ff;`                                           | `#RRGGBB` 形式（正確な色）         |
+| RGB / RGBA | `color: rgb(30,144,255);`<br>`color: rgba(30,144,255,0.5);` | `rgba`は透明度も指定できる（0～1） |
+
+### フォントの種類 — font-family
+```css
+p {
+  font-family: "Noto Sans JP", "Meiryo", sans-serif;
+}
+```
+ルール
+- 複数指定でフォールバック（上から順に使用）
+- スペースを含むフォント名は "ダブルクォート" で囲む
+- 最後は汎用フォント（sans-serif / serif / monospace）で保険
+
+### 文字サイズ — font-size
+```css
+p {
+  font-size: 16px;
+}
+```
+単位の種類
+| 単位  | 意味                         | 備考                   |
+| :---- | :--------------------------- | :--------------------- |
+| `px`  | ピクセル                     | 固定サイズ（よく使う） |
+| `em`  | 親要素を基準にした相対サイズ | 柔軟なデザイン向け     |
+| `%`   | 親要素に対する割合           | レスポンシブ対応に便利 |
+| `rem` | ルート(html)要素を基準       | 全体スケール調整に便利 |
+
+### 太さ — font-weight
+```css
+p {
+  font-weight: bold;
+}
+```
+| 値       | 意味                                     |
+| :------- | :--------------------------------------- |
+| `normal` | 標準（400）                              |
+| `bold`   | 太字（700）                              |
+| 数値     | 100～900で細かく指定（対応フォントのみ） |
+
+### 行の高さ — line-height
+```css
+p {
+  line-height: 1.6;
+}
+```
+ポイント
+- 単位なし（1.6など）→「フォントサイズ × 1.6」
+- px指定も可能（例：24px）
+- 文字が詰まりすぎる場合に調整
+### フォントスタイル・装飾
+```css
+a {
+  text-decoration: none; /* リンク下線を消す */
+}
+em {
+  font-style: italic; /* イタリック */
+}
+```
+| プロパティ        | 値                                  | 効果             |
+| :---------------- | :---------------------------------- | :--------------- |
+| `font-style`      | `normal`, `italic`                  | 斜体にする       |
+| `text-decoration` | `none`, `underline`, `line-through` | 下線や取り消し線 |
+
+### font ショートハンド
+`font: [font-style] [font-weight] [font-size]/[line-height] [font-family];`
+```css
+font: italic bold 16px/1.5 "Noto Sans JP", sans-serif;
+```
+fontショートハンドまとめ
+| 項目       | 内容                                                       | 例                                   |
+| :--------- | :--------------------------------------------------------- | :----------------------------------- |
+| 書式       | `[style] [variant] [weight] [size]/[line-height] [family]` |                                      |
+| 最低限必要 | `font-size` と `font-family`                               | `font: 16px "Noto Sans JP";`         |
+| よく使う形 | `font: italic bold 16px/1.5 "Noto Sans JP";`               |                                      |
+| 注意点     | 未指定項目はリセットされる                                 | `font-weight` などが消える可能性あり |
+
+### 文字揃え — text-align
+```css
+p {
+  text-align: center;
+}
+```
+| 値        | 意味                     |
+| :-------- | :----------------------- |
+| `left`    | 左揃え（既定）           |
+| `center`  | 中央揃え                 |
+| `right`   | 右揃え                   |
+| `justify` | 両端揃え（新聞のように） |
+
+
+### まとめ
+| 分類     | プロパティ                      | 主な値                             |
+| :------- | :------------------------------ | :--------------------------------- |
+| 文字の色 | `color`                         | `#333`, `red`, `rgba(255,0,0,0.5)` |
+| フォント | `font-family`                   | `"Noto Sans JP"`, `sans-serif`     |
+| サイズ   | `font-size`                     | `16px`, `1.2rem`                   |
+| 太さ     | `font-weight`                   | `normal`, `bold`, `700`            |
+| 揃え     | `text-align`                    | `left`, `center`, `right`          |
+| 行間     | `line-height`                   | `1.5`, `24px`                      |
+| 装飾     | `text-decoration`, `font-style` | `underline`, `italic`              |
+
+### <a id="background-color"></a>背景色 — background-color
+```css
+div {
+  background-color: skyblue;
+}
+```
+ポイント
+- 要素全体（padding＋content）に色がつく
+- 色の指定方法は color と同じ（名前・16進数・RGBなど）
+
+### <a id="background-image"></a>背景画像 — background-image
+```css
+div {
+  background-image: url("images/bg.jpg");
+}
+```
+よく使う関連プロパティ：
+| プロパティ              | 意味           | 例                                  |
+| :---------------------- | :------------- | :---------------------------------- |
+| `background-repeat`     | 繰り返し設定   | `no-repeat`, `repeat-x`, `repeat-y` |
+| `background-position`   | 位置           | `center`, `top`, `left 20px`        |
+| `background-size`       | 画像サイズ     | `cover`, `contain`, `100% 100%`     |
+| `background-attachment` | スクロール挙動 | `fixed`, `scroll`                   |
+
+### <a id="background-repeat"></a>background-repeat（背景画像の繰り返し）
+背景画像をどの方向に繰り返すかを指定するプロパティです。
+
+```css
+background-repeat: 値;
+```
+| 値          | 意味                                   | 説明                 |
+| :---------- | :------------------------------------- | :------------------- |
+| `repeat`    | 縦横に繰り返す（デフォルト）           | タイル状に敷き詰め   |
+| `no-repeat` | 繰り返さない                           | 画像を1枚だけ表示    |
+| `repeat-x`  | 横方向にのみ繰り返す                   | 横並びのパターンに   |
+| `repeat-y`  | 縦方向にのみ繰り返す                   | 縦に並ぶパターンに   |
+| `space`     | 隙間を均等に埋めて繰り返す             | （対応ブラウザ限定） |
+| `round`     | 繰り返し数を自動調整して全体にフィット | （対応ブラウザ限定） |
+### <a id="background-position"></a>background-position（背景画像の位置）
+```css
+background-position: 横位置 縦位置;
+```
+| 指定            | 意味                       |
+| :-------------- | :------------------------- |
+| `left top`      | 左上（初期値）             |
+| `center center` | 中央                       |
+| `right bottom`  | 右下                       |
+| `50% 50%`       | 中央（パーセンテージ指定） |
+| `20px 100px`    | 左から20px、上から100px    |
+
+### <a id="background-size"></a>background-size（背景画像のサイズ）
+```css
+background-size: 値;
+```
+| 値            | 意味                                       | 説明                   |
+| :------------ | :----------------------------------------- | :--------------------- |
+| `auto`        | 元画像の大きさのまま                       | デフォルト             |
+| `cover`       | 要素全体を覆うように拡大／トリミングされる | 背景全面にピッタリ     |
+| `contain`     | 要素に収まるように縮小                     | 画像全体が見えるように |
+| `100px 200px` | 幅100px・高さ200px                         | 明示的なサイズ指定     |
+| `50% 50%`     | 幅・高さを要素サイズの割合で指定           |                        |
+
+### <a id="background-attachment"></a>background-attachment（背景の固定）
+```css
+background-attachment: 値;
+```
+| 値       | 意味                                           |
+| :------- | :--------------------------------------------- |
+| `scroll` | 背景が一緒にスクロール（デフォルト）           |
+| `fixed`  | 背景が固定され、コンテンツだけが動く           |
+| `local`  | 要素内のスクロールに合わせて動く（特定要素内） |
+
+### backgroundショートハンド
+```css
+background: [color] [image] [repeat] [position] / [size] [attachment];
+```
+注意点
+- positionとsizaを記載する場合は/が必須となる。それ以外は不要。
+
+| プロパティ                                                   | ショートハンドでの位置  | 例              |
+| :----------------------------------------------------------- | :---------------------- | :-------------- |
+| <a href="#background-color">`background-color`</a>           | 最初                    | `#fafafa`       |
+| <a href="#background-image">`background-image`</a>           | 2番目                   | `url("bg.jpg")` |
+| <a href="#background-repeat">`background-repeat`</a>         | 3番目                   | `no-repeat`     |
+| <a href="#background-position">`background-position`</a>     | 4番目（スラッシュの前） | `center`        |
+| <a href="#background-size">`background-size`</a>             | `/` の後                | `cover`         |
+| <a href="#background-attachment">`background-attachment`</a> | 最後                    | `fixed`         |
+
+
