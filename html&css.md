@@ -11,24 +11,41 @@
     - [強調したい文章](#強調したい文章)
   - [CSSの基本](#cssの基本)
     - [基本構文](#基本構文)
+      - [🧩 セレクタ（selector）とは？](#-セレクタselectorとは)
+      - [⚙️プロパティ（property）と値（value）](#️プロパティpropertyと値value)
+      - [🗂️ CSSの書き込み場所（3パターン](#️-cssの書き込み場所3パターン)
+      - [基本のまとめ](#基本のまとめ)
     - [ボックスモデルの理解](#ボックスモデルの理解)
     - [ブロックボックスとインラインボックスについて](#ブロックボックスとインラインボックスについて)
-    - [文字色の指定 — color](#文字色の指定--color)
-    - [フォントの種類 — font-family](#フォントの種類--font-family)
-    - [文字サイズ — font-size](#文字サイズ--font-size)
-    - [太さ — font-weight](#太さ--font-weight)
-    - [行の高さ — line-height](#行の高さ--line-height)
-    - [フォントスタイル・装飾](#フォントスタイル装飾)
-    - [font ショートハンド](#font-ショートハンド)
-    - [文字揃え — text-align](#文字揃え--text-align)
-    - [まとめ](#まとめ)
-    - [背景色 — background-color](#背景色--background-color)
-    - [背景画像 — background-image](#背景画像--background-image)
-    - [background-repeat（背景画像の繰り返し）](#background-repeat背景画像の繰り返し)
-    - [background-position（背景画像の位置）](#background-position背景画像の位置)
-    - [background-size（背景画像のサイズ）](#background-size背景画像のサイズ)
-    - [background-attachment（背景の固定）](#background-attachment背景の固定)
-    - [backgroundショートハンド](#backgroundショートハンド)
+      - [📦 1. すべての要素は「ボックス」でできている。](#-1-すべての要素はボックスでできている)
+      - [🧱 2. ブロックボックス（Block Box）](#-2-ブロックボックスblock-box)
+      - [🧩 3. インラインボックス（Inline Box）](#-3-インラインボックスinline-box)
+    - [基本プロパティ(color,font)について](#基本プロパティcolorfontについて)
+      - [文字色の指定 — color](#文字色の指定--color)
+      - [フォントの種類 — font-family](#フォントの種類--font-family)
+      - [文字サイズ — font-size](#文字サイズ--font-size)
+      - [太さ — font-weight](#太さ--font-weight)
+      - [行の高さ — line-height](#行の高さ--line-height)
+      - [フォントスタイル・装飾 font-style](#フォントスタイル装飾-font-style)
+      - [font ショートハンド](#font-ショートハンド)
+      - [文字揃え — text-align](#文字揃え--text-align)
+      - [基本プロパティ(font関連)まとめ](#基本プロパティfont関連まとめ)
+    - [基本のプロパティ(background)について](#基本のプロパティbackgroundについて)
+      - [背景色 — background-color](#背景色--background-color)
+      - [背景画像 — background-image](#背景画像--background-image)
+      - [background-repeat（背景画像の繰り返し）](#background-repeat背景画像の繰り返し)
+      - [background-position（背景画像の位置）](#background-position背景画像の位置)
+      - [background-size（背景画像のサイズ）](#background-size背景画像のサイズ)
+      - [background-attachment（背景の固定）](#background-attachment背景の固定)
+      - [backgroundショートハンド](#backgroundショートハンド)
+    - [基本のプロパティ(padding)について](#基本のプロパティpaddingについて)
+      - [padding（内側余白）](#padding内側余白)
+    - [🧱 border（枠線）基本まとめ](#-border枠線基本まとめ)
+      - [🎨 1. 基本構文](#-1-基本構文)
+      - [⚙️ 補足：枠線の種類（border-style）](#️-補足枠線の種類border-style)
+      - [各辺ごとの指定](#各辺ごとの指定)
+    - [枠線の角を丸くする — border-radius](#枠線の角を丸くする--border-radius)
+    - [影をつける — box-shadow](#影をつける--box-shadow)
 
 ## HTMLの基本
 - 基本の書き方<br>
@@ -151,7 +168,7 @@
   プロパティ: 値;
 }
 ```
-🧩 セレクタ（selector）とは？<br>
+#### 🧩 セレクタ（selector）とは？
 CSSが「どのHTML要素にスタイルを当てるか」を決める指定のこと。<br>
 | 種類           | 書き方       | 対象                        | 例                            |
 | :------------- | :----------- | :-------------------------- | :---------------------------- |
@@ -161,7 +178,7 @@ CSSが「どのHTML要素にスタイルを当てるか」を決める指定の�
 | 子孫セレクタ   | `div p`      | div内のp要素                | `<div><p>...</p></div>`       |
 | グループ化     | `h1, h2, h3` | 複数要素をまとめて指定      | `h1, h2, h3 { color: blue; }` |
 
-⚙️プロパティ（property）と値（value）<br>
+#### ⚙️プロパティ（property）と値（value）
 スタイルの「項目」と「設定内容」をペアで指定します。<br>
 | プロパティ           | 値        | 意味               |
 | :------------------- | :-------- | :----------------- |
@@ -171,14 +188,14 @@ CSSが「どのHTML要素にスタイルを当てるか」を決める指定の�
 | `width` / `height`   | `200px`   | 幅・高さ           |
 | `margin` / `padding` | `10px`    | 余白（外側／内側） |
 
-🗂️ CSSの書き込み場所（3パターン）<br>
+#### 🗂️ CSSの書き込み場所（3パターン
 | 方法                    | 書き方                                     | 特徴                                          |
 | :---------------------- | :----------------------------------------- | :-------------------------------------------- |
 | **外部CSS**（おすすめ） | `<link rel="stylesheet" href="style.css">` | HTMLとCSSを分離できる。複数ページで共有可能。 |
 | **内部CSS**             | `<style>p { color: red; }</style>`         | 1ページ内で完結。テストや学習用に便利。       |
 | **インラインCSS**       | `<p style="color:red;">テキスト</p>`       | 一部の要素だけ変更。基本は避ける。            |
 
-まとめ
+#### 基本のまとめ
 | 要素       | 意味               | 例                             |
 | :--------- | :----------------- | :----------------------------- |
 | セレクタ   | どのHTMLに当てるか | `p`, `.class`, `#id`           |
@@ -208,7 +225,7 @@ CSSは次の順で「どれを適用するか」を判断します<br>
 | **margin**  | 要素の外側の余白（他の要素との間隔） | `margin: 20px;`            |
 
 ### ブロックボックスとインラインボックスについて
-📦 1. すべての要素は「ボックス」でできている。<br>
+#### 📦 1. すべての要素は「ボックス」でできている。<br>
 HTMLの要素はすべて「ボックス」として描画されます。<br>
 そのボックスには大きく2種類あります👇
 | 種類                   | 英語       | 主な用途                                     |
@@ -216,7 +233,7 @@ HTMLの要素はすべて「ボックス」として描画されます。<br>
 | **ブロックボックス**   | Block Box  | 段落・セクションのように**縦方向に並ぶ要素** |
 | **インラインボックス** | Inline Box | 文章中に**横方向に並ぶ要素**                 |
 
-🧱 2. ブロックボックス（Block Box）<br>
+#### 🧱 2. ブロックボックス（Block Box）<br>
 ▶ 特徴
 - 縦方向に積み重なる（次の要素は改行される）
 - 幅は親要素いっぱい（デフォルトで width: 100%）
@@ -226,16 +243,18 @@ HTMLの要素はすべて「ボックス」として描画されます。<br>
 ▶ 代表的なタグ<br>
 `<div>, <p>, <h1>～<h6>, <section>, <ul>, <ol>, <table>` など<br>
 
-🧩 3. インラインボックス（Inline Box）<br>
+#### 🧩 3. インラインボックス（Inline Box）<br>
 ▶ 特徴
 - 横方向に並ぶ（文章の流れに沿う）
 - width や height は指定しても効かない（文字サイズや内容で決まる）
 - margin や padding の上下は効かない（左右のみ有効）
 - 改行を入れない限り、同じ行に並ぶ<br>
+
 ▶ 代表的なタグ<br>
 `<span>, <a>, <strong>, <em>, <b>, <i>, <img>` など<br>
 
-### <a id="color"></a>文字色の指定 — color
+### 基本プロパティ(color,font)について
+#### <a id="color"></a>文字色の指定 — color
 書き方
 ```css
 p {
@@ -250,7 +269,7 @@ p {
 | 16進数     | `color: #1e90ff;`                                           | `#RRGGBB` 形式（正確な色）         |
 | RGB / RGBA | `color: rgb(30,144,255);`<br>`color: rgba(30,144,255,0.5);` | `rgba`は透明度も指定できる（0～1） |
 
-### <a id="font-family"></a>フォントの種類 — font-family
+#### <a id="font-family"></a>フォントの種類 — font-family
 ```css
 p {
   font-family: "Noto Sans JP", "Meiryo", sans-serif;
@@ -261,7 +280,7 @@ p {
 - スペースを含むフォント名は "ダブルクォート" で囲む
 - 最後は汎用フォント（sans-serif / serif / monospace）で保険
 
-### <a id="font-size"></a>文字サイズ — font-size
+#### <a id="font-size"></a>文字サイズ — font-size
 ```css
 p {
   font-size: 16px;
@@ -275,7 +294,7 @@ p {
 | `%`   | 親要素に対する割合           | レスポンシブ対応に便利 |
 | `rem` | ルート(html)要素を基準       | 全体スケール調整に便利 |
 
-### <a id="font-weight"></a>太さ — font-weight
+#### <a id="font-weight"></a>太さ — font-weight
 ```css
 p {
   font-weight: bold;
@@ -287,7 +306,7 @@ p {
 | `bold`   | 太字（700）                              |
 | 数値     | 100～900で細かく指定（対応フォントのみ） |
 
-### <a id="line-height"></a>行の高さ — line-height
+#### <a id="line-height"></a>行の高さ — line-height
 ```css
 p {
   line-height: 1.6;
@@ -297,7 +316,7 @@ p {
 - 単位なし（1.6など）→「フォントサイズ × 1.6」
 - px指定も可能（例：24px）
 - 文字が詰まりすぎる場合に調整
-### フォントスタイル・装飾
+#### <a id="font-style"></a>フォントスタイル・装飾 font-style
 ```css
 a {
   text-decoration: none; /* リンク下線を消す */
@@ -311,22 +330,23 @@ em {
 | `font-style`      | `normal`, `italic`                  | 斜体にする       |
 | `text-decoration` | `none`, `underline`, `line-through` | 下線や取り消し線 |
 
-### font ショートハンド
+#### font ショートハンド
 `font: [font-style] [font-weight] [font-size]/[line-height] [font-family];`
+
 ```css
 font: italic bold 16px/1.5 "Noto Sans JP", sans-serif;
 ```
 fontショートハンドまとめ
-| プロパティ     | ショートハンドでの位置      | 例                           |
-| :------------- | :-------------------------- | :--------------------------- |
-| `font-style`   | 最初（任意）                | `italic`                     |
-| `font-variant` | 2番目（任意）               | `small-caps`                 |
-| `font-weight`  | 3番目（任意）               | `bold` / `700`               |
-| `font-size`    | 必須（`line-height`より前） | `16px` / `1rem`              |
-| `line-height`  | `/` の後（任意）            | `1.5` / `24px`               |
-| `font-family`  | 最後（必須）                | `"Noto Sans JP", sans-serif` |
+| プロパティ                               | ショートハンドでの位置      | 例                           |
+| :--------------------------------------- | :-------------------------- | :--------------------------- |
+| <a href="#font-style">`font-style`</a>   | 最初（任意）                | `italic`                     |
+| `font-variant`                           | 2番目（任意）               | `small-caps`                 |
+| <a href="#font-weight">`font-weight`</a> | 3番目（任意）               | `bold` / `700`               |
+| <a href="#font-size">`font-size`</a>     | 必須（`line-height`より前） | `16px` / `1rem`              |
+| <a href="#line-height">`line-height`</a> | `/` の後（任意）            | `1.5` / `24px`               |
+| <a href="#font-family">`font-family`</a> | 最後（必須）                | `"Noto Sans JP", sans-serif` |
 
-### 文字揃え — text-align
+#### 文字揃え — text-align
 ```css
 p {
   text-align: center;
@@ -340,19 +360,22 @@ p {
 | `justify` | 両端揃え（新聞のように） |
 
 
-### まとめ
-| 分類     | プロパティ                                                                               | 主な値                             |
-| :------- | :--------------------------------------------------------------------------------------- | :--------------------------------- |
-| 文字の色 | <a href="#color">`color`</a>                                                             | `#333`, `red`, `rgba(255,0,0,0.5)` |
-| フォント | <a href="#font-family">`font-family`</a>                                                 | `"Noto Sans JP"`, `sans-serif`     |
-| サイズ   | <a href="#font-size">`font-size`</a>                                                     | `16px`, `1.2rem`                   |
-| 太さ     | <a href="#font-weight">`font-weight`</a>                                                 | `normal`, `bold`, `700`            |
-| 揃え     | <a href="#text-align">`text-align`</a>                                                   | `left`, `center`, `right`          |
-| 行間     | <a href="#line-height">`line-height`</a>                                                 | `1.5`, `24px`                      |
-| 装飾     | <a href="#text-decoration">`text-decoration`</a>, <a href="#font-style">`font-style`</a> | `underline`, `italic`              |
-<a href="#"></a>
+#### 基本プロパティ(font関連)まとめ
 
-### <a id="background-color"></a>背景色 — background-color
+| 分類     | プロパティ                                                | 主な値                             |
+| :------- | :-------------------------------------------------------- | :--------------------------------- |
+| 文字の色 | <a href="#color">`color`</a>                              | `#333`, `red`, `rgba(255,0,0,0.5)` |
+| フォント | <a href="#font-family">`font-family`</a>                  | `"Noto Sans JP"`, `sans-serif`     |
+| サイズ   | <a href="#font-size">`font-size`</a>                      | `16px`, `1.2rem`                   |
+| 太さ     | <a href="#font-weight">`font-weight`</a>                  | `normal`, `bold`, `700`            |
+| 揃え     | <a href="#text-align">`text-align`</a>                    | `left`, `center`, `right`          |
+| 行間     | <a href="#line-height">`line-height`</a>                  | `1.5`, `24px`                      |
+| 装飾     | `text-decoration`, <a href="#font-style">`font-style`</a> | `underline`, `italic`              |
+
+### 基本のプロパティ(background)について
+
+#### <a id="background-color"></a>背景色 — background-color
+
 ```css
 div {
   background-color: skyblue;
@@ -362,7 +385,7 @@ div {
 - 要素全体（padding＋content）に色がつく
 - 色の指定方法は <a href="#color">color</a> と同じ（名前・16進数・RGBなど）
 
-### <a id="background-image"></a>背景画像 — background-image
+#### <a id="background-image"></a>背景画像 — background-image
 ```css
 div {
   background-image: url("images/bg.jpg");
@@ -376,7 +399,7 @@ div {
 | `background-size`       | 画像サイズ     | `cover`, `contain`, `100% 100%`     |
 | `background-attachment` | スクロール挙動 | `fixed`, `scroll`                   |
 
-### <a id="background-repeat"></a>background-repeat（背景画像の繰り返し）
+#### <a id="background-repeat"></a>background-repeat（背景画像の繰り返し）
 背景画像をどの方向に繰り返すかを指定するプロパティです。
 
 ```css
@@ -390,7 +413,8 @@ background-repeat: 値;
 | `repeat-y`  | 縦方向にのみ繰り返す                   | 縦に並ぶパターンに   |
 | `space`     | 隙間を均等に埋めて繰り返す             | （対応ブラウザ限定） |
 | `round`     | 繰り返し数を自動調整して全体にフィット | （対応ブラウザ限定） |
-### <a id="background-position"></a>background-position（背景画像の位置）
+
+#### <a id="background-position"></a>background-position（背景画像の位置）
 ```css
 background-position: 横位置 縦位置;
 ```
@@ -402,7 +426,7 @@ background-position: 横位置 縦位置;
 | `50% 50%`       | 中央（パーセンテージ指定） |
 | `20px 100px`    | 左から20px、上から100px    |
 
-### <a id="background-size"></a>background-size（背景画像のサイズ）
+#### <a id="background-size"></a>background-size（背景画像のサイズ）
 ```css
 background-size: 値;
 ```
@@ -414,7 +438,7 @@ background-size: 値;
 | `100px 200px` | 幅100px・高さ200px                         | 明示的なサイズ指定     |
 | `50% 50%`     | 幅・高さを要素サイズの割合で指定           |                        |
 
-### <a id="background-attachment"></a>background-attachment（背景の固定）
+#### <a id="background-attachment"></a>background-attachment（背景の固定）
 ```css
 background-attachment: 値;
 ```
@@ -424,7 +448,7 @@ background-attachment: 値;
 | `fixed`  | 背景が固定され、コンテンツだけが動く           |
 | `local`  | 要素内のスクロールに合わせて動く（特定要素内） |
 
-### backgroundショートハンド
+#### backgroundショートハンド
 ```css
 background: [color] [image] [repeat] [position] / [size] [attachment];
 ```
@@ -439,5 +463,155 @@ background: [color] [image] [repeat] [position] / [size] [attachment];
 | <a href="#background-position">`background-position`</a>     | 4番目（スラッシュの前） | `center`        |
 | <a href="#background-size">`background-size`</a>             | `/` の後                | `cover`         |
 | <a href="#background-attachment">`background-attachment`</a> | 最後                    | `fixed`         |
+
+### 基本のプロパティ(padding)について
+#### padding（内側余白）
+書式
+```css
+padding: [値];
+```
+または、上下左右を個別に指定する場合：
+```css
+padding-top: [値];
+padding-right: [値];
+padding-bottom: [値];
+padding-left: [値];
+```
+説明<br>
+padding は、要素の内側の余白を設定するプロパティです。<br>
+要素の内容（テキストや画像）と枠線（border）の間のスペースを作ります。<br>
+- 値の単位には px, em, % などを使えます。
+- 4方向をまとめて指定するショートハンドもあります。
+- padding は 背景色や背景画像の領域にも影響します。
+
+値の指定方法（ショートハンド）
+
+| 指定数 | 書式                            | 意味                           | 例                             |
+| :----: | :------------------------------ | :----------------------------- | :----------------------------- |
+|  1つ   | `padding: 10px;`                | 全方向に同じ余白               | 上下左右10px                   |
+|  2つ   | `padding: 10px 20px;`           | 上下＝10px、左右＝20px         |                                |
+|  3つ   | `padding: 10px 20px 30px;`      | 上＝10px、左右＝20px、下＝30px |                                |
+|  4つ   | `padding: 10px 20px 30px 40px;` | 上→右→下→左の順                | 上10px, 右20px, 下30px, 左40px |
+
+例文
+```css
+.box {
+  background-color: lightblue;
+  padding: 20px;
+}
+```
+
+### 🧱 border（枠線）基本まとめ
+CSSの border は、要素の外枠を装飾するためのプロパティ。<br>
+線の「太さ」「種類」「色」を組み合わせて指定します。<br>
+
+#### 🎨 1. 基本構文
+
+```css
+border: [border-width] [border-style] [border-color];
+例
+div {
+  border: 2px solid black;
+}
+```
+border プロパティは、要素の外枠に線を描くためのCSSプロパティです。<br>
+「太さ（width）」「線の種類（style）」「色（color）」を指定して、<br>
+ボックスの輪郭をデザインします。<br>
+3つの指定のうち、<br>
+🟡 border-style は必須項目です。<br>
+太さや色を省略した場合は、次の初期値が適用されます。<br>
+
+| 項目           | 省略時の初期値                 | 例                                            |
+| :------------- | :----------------------------- | :-------------------------------------------- |
+| `border-width` | `medium`（約3px）              | `1px`, `0.2em`, `thin`, `thick`               |
+| `border-style` | `none`（線なし）               | `solid`, `dashed`, `dotted`, `double`, `none` |
+| `border-color` | `currentColor`（文字色と同じ） | `#333`, `red`, `rgba(0,0,0,0.5)`              |
+
+#### ⚙️ 補足：枠線の種類（border-style）
+border-style には、見た目のバリエーションがあります👇
+| 値       | 見た目 | 説明                     |
+| :------- | :----: | :----------------------- |
+| `none`   |   ―    | 枠線なし（初期値）       |
+| `solid`  |   ━    | 実線（最も一般的）       |
+| `dashed` | ┄ ┄ ┄  | 破線（短い線の連続）     |
+| `dotted` |  ⋯⋯⋯   | 点線（ドット状）         |
+| `double` |   ═    | 二重線（2本の線）        |
+| `groove` |   ▢    | 凹んだ3D効果の線         |
+| `ridge`  |   ▢    | 浮き上がる3D効果の線     |
+| `inset`  |   ▣    | 内側に沈み込むような線   |
+| `outset` |   ▣    | 外側に浮き上がるような線 |
+
+`💡 groove・ridge・inset・outset は、要素の background-color に応じて自動的に陰影が付きます。`
+
+#### 各辺ごとの指定
+構文
+```css
+border-top: [width] [style] [color];
+border-right: [width] [style] [color];
+border-bottom: [width] [style] [color];
+border-left: [width] [style] [color];
+```
+説明<br>
+border は、上下左右の各辺を独立して指定することができます。<br>
+部分的に異なる線を引きたい場合に使用します。<br>
+
+例文
+```css
+div {
+  border-top: 3px solid red;
+  border-right: 3px dashed green;
+  border-bottom: 3px double blue;
+  border-left: 3px dotted orange;
+}
+```
+注意点
+- 各辺の構文も、通常の border と同様に [太さ] [スタイル] [色] の順で指定できます。
+- border-style を忘れると線は描画されません。
+- 上下左右すべてに異なるスタイルを設定することも可能。
+
+####　borderまとめ
+
+| 項目           | 内容                                                                        |
+| :------------- | :-------------------------------------------------------------------------- |
+| 基本構文       | `border: [width] [style] [color];`                                          |
+| 各辺構文       | `border-top/right/bottom/left: [width] [style] [color];`                    |
+| スタイルの種類 | `solid`, `dashed`, `dotted`, `double`, `groove`, `ridge`, `inset`, `outset` |
+| 注意点         | `border-style` は必須／線は padding の外側に描画される                      |
+
+
+### 枠線の角を丸くする — border-radius
+構文
+```css
+border-radius: [半径];
+```
+説明<br>
+border-radius は、要素の角を丸くするプロパティです。<br>
+値には丸める半径を指定し、単位は px や % を使います。<br>
+指定した半径分だけ、角が円弧状になります。
+単一の値を指定 → 4つの角すべてが同じ丸み。
+複数値を指定 → 各角を個別に調整可能。
+
+% 指定にすると、要素サイズに対して割合で丸みを設定できる。
+
+| 値              | 効果                               |
+| :-------------- | :--------------------------------- |
+| `5px`           | 角を少し丸くする                   |
+| `50%`           | 丸い形（正方形の画像で円に）       |
+| `10px 0 10px 0` | 各角を個別指定（左上から時計回り） |
+
+例
+```css
+button {
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}
+```
+### 影をつける — box-shadow
+構文
+```css
+box-shadow: X方向 Y方向 ぼかし距離 色;
+``` 
+
 
 
