@@ -171,7 +171,9 @@ absolute は 「基準となる親」 によって動作が変わるため、<br
 | `position: absolute;`（子） | 親の中で **自由に配置**できる（右上・左下・中央など） |
 
 コード例（UI で一番使うパターン）
-カードの右上にアイコンを配置
+カードの右上にアイコンを配置 <br>
+[Flexboxデモを見る](samples/flexbox/index.html)
+
 ```html
 <div class="card">
   <img src="image.jpg" alt="画像">
@@ -196,55 +198,6 @@ absolute は 「基準となる親」 によって動作が変わるため、<br
   border-radius: 4px;
 }
 ```
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="UTF-8" />
-<title>カード右上にアイコン配置デモ</title>
-
-<style>
-  /* カード全体 */
-  .card {
-    width: 280px;
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    position: relative; /* ← これが absolute の基準 */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
-
-  /* アイコンを右上に絶対配置 */
-  .card .icon {
-    position: absolute;  /* ← ここが重要！ */
-    top: 10px;
-    right: 10px;
-    width: 28px;
-    height: 28px;
-  }
-
-  /* タイトルなど */
-  .card h2 {
-    margin-top: 40px; /* アイコンと重ならないように少し下げる */
-    font-size: 20px;
-  }
-</style>
-</head>
-
-<body>
-
-  <div class="card">
-    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="設定アイコン">
-    <h2>サンプルカード</h2>
-    <p>これは絶対配置 absolute を使って、アイコンを右上に固定した例です。</p>
-  </div>
-
-</body>
-</html>
-
-
-
-
 
 **例 fixed(画面固定)**
 ```css
