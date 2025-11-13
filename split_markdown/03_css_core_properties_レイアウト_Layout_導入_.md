@@ -172,7 +172,7 @@ absolute は 「基準となる親」 によって動作が変わるため、<br
 
 コード例（UI で一番使うパターン）
 カードの右上にアイコンを配置 <br>
-[カード右上アイコンのサンプル](sample/card_icon/index.html)
+[カードアイコンサンプルを見る](https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/card_icon/index.html)
 
 ```html
 <div class="card">
