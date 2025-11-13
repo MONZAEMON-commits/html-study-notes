@@ -54,7 +54,7 @@
   - [フッター（footer）](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#フッター-footer)
   - [全タグ統一フォーマットOK,NG表](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#全タグ統一フォーマットok-ng表)
   - [ナビゲーションの種類（用途によって呼び方が変わる）](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#ナビゲーションの種類-用途によって呼び方が変わる)
-  - [<section>（セクション）＋ アウトラインの解説](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#section-セクション-アウトラインの解説)
+  - [<section>（セクション）+アウトラインの解説](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#section-セクション-アウトラインの解説)
   - [**アウトラインとの関係（最重要）**](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#アウトラインとの関係-最重要)
   - [`<section>` がアウトラインに与える影響](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#section-がアウトラインに与える影響)
   - [`<time>`（日時を表すセマンティックタグ）](split_markdown/06_semantic_html_Webサイトを構成する主要パーツの解説_意味付けタグ_.md#time-日時を表すセマンティックタグ)
