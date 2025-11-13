@@ -149,6 +149,103 @@ div {
 - 親要素に position: relative; があると、その中を基準に配置。
 - 他の要素のレイアウトには影響を与えない。<br>
 
+**absolute の基準（重要）**<br>
+absolute の基準（どこを起点に配置するか）は、次のルールで決まります：
+<ol>
+<li>最も近い position: relative / absolute / fixed / sticky を持つ親要素が基準になる</li>
+<li>もし親がどれも position を持たなければ、ページ全体（初期包含ブロック）が基準になる</li>
+<li>親に transform（例：transform: translate()）があると、その要素も基準になる（例外）</li>
+</ol>
+
+`※ このルールを知らないと「なぜここに配置されるの？」という混乱が起きる。`
+
+
+## relative（親）＋ absolute（子）で行う基本レイアウト
+要素を重ねたい・角に固定したいときに最も使われる定番パターンです。<br>
+absolute は 「基準となる親」 によって動作が変わるため、<br>
+親に position: relative; を指定して、“その中” で絶対配置を行います。<br>
+**役割の整理**
+| 役割                        | 説明                                                  |
+| --------------------------- | ----------------------------------------------------- |
+| `position: relative;`（親） | 子の absolute の **基準点を作る**                     |
+| `position: absolute;`（子） | 親の中で **自由に配置**できる（右上・左下・中央など） |
+
+コード例（UI で一番使うパターン）
+カードの右上にアイコンを配置
+```html
+<div class="card">
+  <img src="image.jpg" alt="画像">
+  <span class="badge">New</span>
+</div>
+```
+```css
+.card {
+  position: relative; /* 子absoluteの基準 */
+  width: 300px;
+  height: 200px;
+  background-color: #eee;
+}
+
+.badge {
+  position: absolute; /* 親.cardを基準に配置 */
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+```
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>カード右上にアイコン配置デモ</title>
+
+<style>
+  /* カード全体 */
+  .card {
+    width: 280px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    position: relative; /* ← これが absolute の基準 */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  /* アイコンを右上に絶対配置 */
+  .card .icon {
+    position: absolute;  /* ← ここが重要！ */
+    top: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+  }
+
+  /* タイトルなど */
+  .card h2 {
+    margin-top: 40px; /* アイコンと重ならないように少し下げる */
+    font-size: 20px;
+  }
+</style>
+</head>
+
+<body>
+
+  <div class="card">
+    <img class="icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" alt="設定アイコン">
+    <h2>サンプルカード</h2>
+    <p>これは絶対配置 absolute を使って、アイコンを右上に固定した例です。</p>
+  </div>
+
+</body>
+</html>
+
+
+
+
+
 **例 fixed(画面固定)**
 ```css
 .header {

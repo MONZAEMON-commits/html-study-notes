@@ -2,7 +2,6 @@
 
 ## 📖 目次
 
-- [HTML/CSS webデザイン](split_markdown/HTML_CSS_webデザイン.md)
 - [01_html_basics(HTMLの基本)](split_markdown/01_html_basics_HTMLの基本_.md)
   - [マークアップについて](split_markdown/01_html_basics_HTMLの基本_.md#マークアップについて)
   - [基本のタグ](split_markdown/01_html_basics_HTMLの基本_.md#基本のタグ)
