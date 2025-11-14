@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>grid-template-columns デモ</title>
+    <link rel="stylesheet" href="grid-columns-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>grid-template-columns の基本例</h1>
+        <p class="page-desc">
+            代表的な列幅の指定パターンをまとめたデモです。<br />
+            各例で <code>grid-template-columns</code> の指定を変更してレイアウトの違いを確認できます。
+        </p>
+
+        <!-- 1. 3列を等分する -->
+        <section class="example">
+            <h2>1. 3列を等分する（<code>1fr 1fr 1fr</code>）</h2>
+            <p class="desc">
+                横幅を3等分する基本的なパターン。画面幅に応じて各列が同じ割合で伸び縮みします。
+            </p>
+            <div class="grid-demo grid-equal">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+            </div>
+            <pre class="code"><code>.grid-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 2. 固定幅 + 可変幅 -->
+        <section class="example">
+            <h2>2. 固定幅 + 可変幅（<code>200px 1fr</code>）</h2>
+            <p class="desc">
+                左のカラムは常に200px、右のカラムが残りの幅をすべて受け取ります。
+                サイドバー＋コンテンツのようなレイアウトに使います。
+            </p>
+            <div class="grid-demo grid-fixed-flex">
+                <div class="item">サイドバー</div>
+                <div class="item">メインコンテンツ</div>
+            </div>
+            <pre class="code"><code>.grid-fixed-flex {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 3. 全部固定幅 -->
+        <section class="example">
+            <h2>3. 全部固定幅（<code>150px 150px 150px</code>）</h2>
+            <p class="desc">
+                すべての列を同じ固定幅にするパターン。カード一覧やアイコンのグリッドなど、
+                幅を揃えたいときに使用します。
+            </p>
+            <div class="grid-demo grid-fixed-all">
+                <div class="item">カード1</div>
+                <div class="item">カード2</div>
+                <div class="item">カード3</div>
+            </div>
+            <pre class="code"><code>.grid-fixed-all {
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 4. auto + fr -->
+        <section class="example">
+            <h2>4. 自然幅 + 可変幅（<code>auto 1fr</code>）</h2>
+            <p class="desc">
+                左のカラムはコンテンツの幅に合わせて決まり、右のカラムが残りのスペースを受け取ります。
+                ラベル + 入力欄のようなレイアウトに向いています。
+            </p>
+            <div class="grid-demo grid-auto-fr">
+                <div class="item">ラベルのテキスト</div>
+                <div class="item">入力欄や本文テキスト</div>
+            </div>
+            <pre class="code"><code>.grid-auto-fr {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 5. minmax を使った伸縮 -->
+        <section class="example">
+            <h2>5. 最小〜最大の範囲で伸縮（<code>minmax(150px, 1fr)</code>）</h2>
+            <p class="desc">
+                列幅の下限と上限を指定するパターン。小さい画面では潰れすぎないようにしつつ、
+                大きい画面では余裕を持って広がるレイアウトにできます。
+            </p>
+            <div class="grid-demo grid-minmax">
+                <div class="item">左カラム</div>
+                <div class="item">右カラム</div>
+            </div>
+            <pre class="code"><code>.grid-minmax {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+    </main>
+</body>
+
+</html>

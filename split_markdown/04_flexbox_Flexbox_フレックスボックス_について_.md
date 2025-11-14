@@ -91,6 +91,38 @@ Flexboxは**親要素(コンテナ)と子要素(アイテム)**に分かれま�
 | 特徴           | 中央寄せ・均等配置・折り返しが簡単                        |
 | 注意点         | 親に指定する・旧仕様(float)より新しい                     |
 
+## flex-direction（並び方向を決める）
+構文
+```css
+flex-direction: row | row-reverse | column | column-reverse;
+```
+説明<br>
+Flexbox の「子要素がどの方向へ並ぶか」を決めるプロパティ。<br>
+並び方向が変わると、 justify-content（主軸揃え） と align-items（交差軸揃え）が入れ替わるため、<br>
+Flexbox の最も基本となる設定。<br>
+
+| 値               | 並び方向        | 主軸         | 交差軸 | 主な用途                         |
+| ---------------- | --------------- | ------------ | ------ | -------------------------------- |
+| `row`            | 左→右（横並び） | 横向き       | 縦向き | デフォルトのメニュー・ボタン等   |
+| `column`         | 上→下（縦並び） | 縦向き       | 横向き | スマホレイアウト・縦に積むカード |
+| `row-reverse`    | 右→左           | 横（逆方向） | 縦     | 特殊UI（右から並べたい場合）     |
+| `column-reverse` | 下→上           | 縦（逆方向） | 横     | チャットUIなど                   |
+
+例文
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+```
+説明:子要素が縦方向に並び、上下に 10px の間隔をつける。
+**注意点**
+- justify-content と align-items の「軸」が flex-direction によって変わる<br>
+`→ row の justify-content は横揃え / column の justify-content は縦揃え`
+- 逆方向（-reverse）は CSS アニメーションと相性が悪い場合がある
+- column を使うと高さ依存のレイアウトが崩れやすくなることがある
+
 ## justify-content と align-items(Flexbox の整列)について
 構文
 ```css
@@ -182,6 +214,114 @@ A・B・Cが 横一列で中央に配置される。<br>
 | :---------------- | :--------------- | :------------------------------------ | :----------- |
 | `justify-content` | 横方向(メイン軸) | `center`, `space-between`, `flex-end` | 横方向の配置 |
 | `align-items`     | 縦方向(交差軸)   | `center`, `flex-start`, `flex-end`    | 縦方向の整列 |
+
+## flex-wrap（折り返し）
+構文
+```css
+flex-wrap: nowrap | wrap | wrap-reverse;
+```
+説明<br>
+Flexbox はデフォルトでは「1行に詰め込む」仕様。<br>
+要素が溢れても折り返さないため、<br>
+レイアウトが崩れることがある。<br>
+flex-wrap を使うと**複数行レイアウト（折り返し）**が可能になる。
+
+| 値             | 説明                                          |
+| -------------- | --------------------------------------------- |
+| `nowrap`       | 折り返さない（デフォルト）                    |
+| `wrap`         | 左→右、上→下 の順で折り返す                   |
+| `wrap-reverse` | 左→右、下→上 の順で折り返す（上下が逆になる） |
+
+例文
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+```
+**注意点**
+- 要素が多いカードレイアウトなどで必須の設定。
+- wrap を使う場合は gap とセットで使うと整列が安定する。
+- wrap と justify-content の組み合わせで整列が変わるので要注意。
+
+
+## flex-flow（ショートハンド）
+構文
+```css
+flex-flow: <flex-direction> <flex-wrap>;
+```
+説明<br>
+flex-direction と flex-wrap を一括指定するショートハンド。<br>
+書く量を減らして可読性も上がる。<br>
+
+例文
+```css
+.container {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+```
+**注意点**
+- 順序は direction → wrap の順。
+- 片方だけ省略はできるが、省略時はデフォルト値になるので注意。
+
+## gap（要素の間隔）
+構文
+```css
+gap: 値;
+```
+説明<br>
+Flexbox の子要素同士の すき間 を設定する。<br>
+これだけで margin を使わずに均等間隔が作れるため、<br>
+現在の CSS ではほぼ必須のプロパティ。<br>
+
+例文
+```css
+.container {
+  display: flex;
+  gap: 20px;
+}
+```
+**注意点**
+- padding や margin よりもレイアウトが安定する。
+- column-gap / row-gap も使える。
+- Grid でも gap は同じように使える（互換性あり）。
+
+## align-content（複数行の縦方向整列）
+構文
+```css
+align-content: stretch | flex-start | center | flex-end | space-between | space-around | space-evenly;
+```
+説明<br>
+flex-wrap: wrap; が有効なときのみ使える<br>
+複数行の縦方向（交差軸）の整列。<br>
+※ 1行しかないときはまったく効かない。<br>
+
+| 値            | 説明                                 |
+| ------------- | ------------------------------------ |
+| stretch       | 行を縦方向に引き伸ばす（デフォルト） |
+| flex-start    | 上に寄せる                           |
+| center        | 中央寄せ                             |
+| flex-end      | 下に寄せる                           |
+| space-between | 行と行の間を等間隔                   |
+| space-around  | 行の上下にも半分のスペース           |
+| space-evenly  | 全方向を完全に均等                   |
+
+例文
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  height: 300px;
+}
+```
+**注意点**
+- 要素が複数行にならないと絶対に効かない。
+- align-items と混同しない（align-items は「行の中の要素」）。
+- 行をまとめて整列するイメージで使う
 
 ## Flexbox：子要素のプロパティ
 構文
@@ -431,4 +571,33 @@ Flexboxの応用では、<br>
 | `align-items`     | 交差軸の整列         | 縦方向中央など           |
 | `gap`             | 要素間の間隔         | 均一な余白配置           |
 
+## Flexbox 子要素の注意点（実務でよくある落とし穴）
+**注意点**
+- **flex-basis は width より優先される**<br>
+`flex-basis: auto; のとき width が使われるが、`<br>
+`数値で指定すると width を上書きする。`
+
+- **flex-shrink のデフォルト 1 は危険**<br>
+`狭い画面で勝手に縮むので、固定したい要素には`<br>
+`flex-shrink: 0; をつける必要がある。`
+
+- **order はあくまで見た目だけ**
+`DOM（HTML の順番）は変わらないため、`<br>
+`スクリーンリーダーや SEO には影響しない。`<br>
+
+- **align-self は親の align-items を上書きする**<br>
+`子単体の位置だけ変えたい場合にだけ使う。`
+
+- **flex: 1; は “均等幅” の意味で使われがちだが、正確には flex: 1 1 0%**<br>
+`初期幅が 0 なので、「余白だけで均等割り」になる。`<br>
+
+- **margin: auto; は子要素1つだけの中央寄せが可能**<br>
+`Flexbox では margin が “軸方向にも” 効く特殊な仕様。`<br>
+
+| 落とし穴                 | 原因                          | 対策                           |
+| ------------------------ | ----------------------------- | ------------------------------ |
+| 要素が勝手に縮む         | `flex-shrink: 1` がデフォルト | shrink: 0 を設定               |
+| 幅が思い通りにならない   | flex-basis が width を上書き  | width を使うときは basis: auto |
+| 子要素の順番が変わらない | order は視覚だけ操作          | HTML 順序は変更不可            |
+| 中央揃えできない         | align-items だけで足りない    | margin: auto を併用            |
 
