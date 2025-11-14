@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Grid Responsive Layout Demo</title>
+    <link rel="stylesheet" href="grid-responsive-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>完全レスポンシブレイアウト（auto-fit + minmax）デモ</h1>
+        <p class="page-desc">
+            wrapper を使用せず、minmax と auto-fit の組み合わせだけで
+            スマホ〜PCで自然にカラム数が変化する Grid のレスポンシブ動作を確認できます。
+            メディアクエリは使用していません。
+        </p>
+
+        <section class="example">
+            <h2>auto-fit + minmax(240px, 1fr)</h2>
+
+            <!-- wrapper撤去：これがA案の最重要点！ -->
+            <div class="responsive-grid">
+                <div class="card">Card 1</div>
+                <div class="card">Card 2</div>
+                <div class="card">Card 3</div>
+                <div class="card">Card 4</div>
+                <div class="card">Card 5</div>
+                <div class="card">Card 6</div>
+            </div>
+
+            <pre class="code"><code>.responsive-grid {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

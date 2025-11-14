@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>auto-fill / auto-fit デモ（完全版）</title>
+    <link rel="stylesheet" href="grid-autofill-fit-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>auto-fill / auto-fit のデモ一覧</h1>
+        <p class="page-desc">
+            <code>auto-fill</code> と <code>auto-fit</code> の違いを視覚的に比較できるデモです。<br />
+            ウィンドウ幅の変化や、カードの数が少ない場合の挙動が最もわかりやすい構成になっています。
+        </p>
+
+        <!-- 1. auto-fill 基本 -->
+        <section class="example">
+            <h2>1. auto-fill（空セルを残す）（<code>repeat(auto-fill, minmax(150px, 1fr))</code>）</h2>
+            <p class="desc">可能な限りカラムを詰めて生成するが、空き枠（空セル）はそのまま残る。</p>
+
+            <div class="grid-demo demo-autofill">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+            </div>
+
+            <pre class="code"><code>.demo-autofill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 2. auto-fit 基本 -->
+        <section class="example">
+            <h2>2. auto-fit（空き吸収で伸びる）（<code>repeat(auto-fit, minmax(150px, 1fr))</code>）</h2>
+            <p class="desc">空セルが“潰れて”見えなくなり、残った要素が横に伸びてフィットする。</p>
+
+            <div class="grid-demo demo-autofit">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+            </div>
+
+            <pre class="code"><code>.demo-autofit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 3. カード数が少ないときの比較 -->
+        <section class="example">
+            <h2>3. カード数が少ない場合の違い</h2>
+            <p class="desc">要素数が減ると auto-fill と auto-fit の差が最も明確になる。</p>
+
+            <h3>auto-fill（空枠が残る）</h3>
+            <div class="grid-demo demo-autofill-few">
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+
+            <h3>auto-fit（伸びてフィット）</h3>
+            <div class="grid-demo demo-autofit-few">
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+
+            <pre class="code"><code>.demo-autofill-few {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.demo-autofit-few {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 4. minmax の最小幅変化 -->
+        <section class="example">
+            <h2>4. minmax の最小幅を変更したとき（<code>minmax(200px, 1fr)</code>）</h2>
+            <p class="desc">最小幅を大きくするとカラム数が減り、1列あたりの幅が大きくなる。</p>
+
+            <div class="grid-demo demo-autofit-200">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+
+            <pre class="code"><code>.demo-autofit-200 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

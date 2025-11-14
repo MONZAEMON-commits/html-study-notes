@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>grid gap デモ（完全版）</title>
+    <link rel="stylesheet" href="grid-gap-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>gap（行・列の間隔）のデモ一覧</h1>
+        <p class="page-desc">
+            <code>gap</code> / <code>row-gap</code> / <code>column-gap</code> の挙動を視覚的にまとめたデモです。<br />
+            行・列がどのように離れていくか、また gap を 0 にするとどう変わるかを確認できます。
+        </p>
+
+        <!-- 1. gap: 12px -->
+        <section class="example">
+            <h2>1. 行・列共通の gap（<code>gap: 12px</code>）</h2>
+            <p class="desc">最も基本的な gap。行と列が同じ間隔で開く。</p>
+
+            <div class="grid-demo grid-gap-12">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+            </div>
+
+            <pre class="code"><code>.grid-gap-12 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 2. 行と列で別々の gap -->
+        <section class="example">
+            <h2>2. 行と列で異なる gap（<code>row-gap: 20px; column-gap: 40px;</code>）</h2>
+            <p class="desc">行の間は20px、列の間は40px。</p>
+
+            <div class="grid-demo grid-gap-diff">
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+                <div class="item">D</div>
+                <div class="item">E</div>
+                <div class="item">F</div>
+            </div>
+
+            <pre class="code"><code>.grid-gap-diff {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 20px;
+  column-gap: 40px;
+}</code></pre>
+        </section>
+
+        <!-- 3. すき間なし -->
+        <section class="example">
+            <h2>3. すき間なし（<code>gap: 0</code>）</h2>
+            <p class="desc">グリッドが隙間なく詰まるパターン。</p>
+
+            <div class="grid-demo grid-gap-zero">
+                <div class="item">赤</div>
+                <div class="item">青</div>
+                <div class="item">緑</div>
+                <div class="item">紫</div>
+                <div class="item">黄</div>
+                <div class="item">黒</div>
+            </div>
+
+            <pre class="code"><code>.grid-gap-zero {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+}</code></pre>
+        </section>
+
+        <!-- 4. gap: 行 列 -->
+        <section class="example">
+            <h2>4. 行と列を個別に指定（<code>gap: 16px 40px</code>）</h2>
+            <p class="desc">行（上下）は16px、列（左右）は40px のパターン。</p>
+
+            <div class="grid-demo grid-gap-two-values">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+            </div>
+
+            <pre class="code"><code>.grid-gap-two-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px 40px; /* 行 列 */
+}</code></pre>
+        </section>
+
+        <!-- 5. gap の有無を比較（カードグリッド） -->
+        <section class="example">
+            <h2>5. gap の有無の比較</h2>
+            <p class="desc">大量要素のカードレイアウトで gap の違いを比較。</p>
+
+            <h3>gap: 16px</h3>
+            <div class="grid-demo grid-card-gap">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="item">8</div>
+            </div>
+
+            <h3>gap: 0</h3>
+            <div class="grid-demo grid-card-no-gap">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+                <div class="item">6</div>
+                <div class="item">7</div>
+                <div class="item">8</div>
+            </div>
+
+            <pre class="code"><code>.grid-card-gap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.grid-card-no-gap {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

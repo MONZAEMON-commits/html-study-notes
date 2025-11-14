@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>fr / repeat デモ（完全版）</title>
+    <link rel="stylesheet" href="grid-fr-repeat-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>fr / repeat() のデモ一覧</h1>
+        <p class="page-desc">
+            <code>fr</code>（比率配分）と <code>repeat()</code>（繰り返し生成）の挙動をまとめて視覚的に確認できるデモです。<br />
+            auto-fill と auto-fit の違いも含め、Grid の柔軟性が分かるよう構成されています。
+        </p>
+
+        <!-- 1. 1fr 1fr 1fr -->
+        <section class="example">
+            <h2>1. 等分（<code>1fr 1fr 1fr</code>）</h2>
+            <p class="desc">残り幅を均等に3つへ分配する最も基本的な fr。</p>
+            <div class="grid-demo demo-fr-equal">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+            </div>
+            <pre class="code"><code>.demo-fr-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 2. 2fr 1fr -->
+        <section class="example">
+            <h2>2. 比率（<code>2fr 1fr</code>）</h2>
+            <p class="desc">左が 2、右が 1 の比率で残り幅を分配。</p>
+            <div class="grid-demo demo-fr-2-1">
+                <div class="item">左（2fr）</div>
+                <div class="item">右（1fr）</div>
+            </div>
+            <pre class="code"><code>.demo-fr-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 3. 1fr 2fr 1fr -->
+        <section class="example">
+            <h2>3. センター強調（<code>1fr 2fr 1fr</code>）</h2>
+            <p class="desc">中央を強調したいときによく使う。</p>
+            <div class="grid-demo demo-fr-center">
+                <div class="item">L</div>
+                <div class="item">C</div>
+                <div class="item">R</div>
+            </div>
+            <pre class="code"><code>.demo-fr-center {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 4. repeat(3, 1fr) -->
+        <section class="example">
+            <h2>4. repeat（<code>repeat(3, 1fr)</code>）</h2>
+            <p class="desc">3等分を簡潔に書く省略記法。</p>
+            <div class="grid-demo demo-repeat-3fr">
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
+            </div>
+            <pre class="code"><code>.demo-repeat-3fr {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 5. repeat(4, 150px) -->
+        <section class="example">
+            <h2>5. 固定幅の繰り返し（<code>repeat(4, 150px)</code>）</h2>
+            <p class="desc">幅が揃った固定グリッドを作る。</p>
+            <div class="grid-demo demo-repeat-fixed">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+            <pre class="code"><code>.demo-repeat-fixed {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 6. repeat(3, auto) -->
+        <section class="example">
+            <h2>6. 自然幅の繰り返し（<code>repeat(3, auto)</code>）</h2>
+            <p class="desc">auto が必要幅を取り、行が自然に広がる。</p>
+            <div class="grid-demo demo-repeat-auto">
+                <div class="item">短文</div>
+                <div class="item">長めの文章が入ります</div>
+                <div class="item">文字量の差を確認</div>
+            </div>
+            <pre class="code"><code>.demo-repeat-auto {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 7. repeat(5, minmax(100px, 1fr)) -->
+        <section class="example">
+            <h2>7. 柔軟なカラム群（<code>repeat(5, minmax(100px, 1fr))</code>）</h2>
+            <p class="desc">小さい画面では100pxを下回らず、大画面では広がる。</p>
+            <div class="grid-demo demo-repeat-minmax">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+                <div class="item">5</div>
+            </div>
+            <pre class="code"><code>.demo-repeat-minmax {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(100px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 8. auto-fill -->
+        <section class="example">
+            <h2>8. auto-fill（<code>repeat(auto-fill, minmax(150px, 1fr))</code>）</h2>
+            <p class="desc">可能な限り詰める（空セルあり）。Pinterest風の並びになる。</p>
+            <div class="grid-demo demo-autofill">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+            <pre class="code"><code>.demo-autofill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 9. auto-fit -->
+        <section class="example">
+            <h2>9. auto-fit（<code>repeat(auto-fit, minmax(150px, 1fr))</code>）</h2>
+            <p class="desc">余白を吸収し、セルが伸びて隙間が埋まる。</p>
+            <div class="grid-demo demo-autofit">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+            <pre class="code"><code>.demo-autofit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

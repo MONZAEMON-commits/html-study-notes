@@ -1,0 +1,76 @@
+/* GitHub Pages の max-width 問題を回避する wrapper */
+.grid-wrapper {
+    width: 900px !important;
+    min-width: 900px !important;
+    max-width: 900px !important;
+
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 0;
+}
+
+/* 共通デザイン */
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
+
+.page {
+    max-width: 960px;
+    margin: 32px auto;
+    padding: 0 16px 48px;
+}
+
+.example {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px 20px 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Grid 本体（wrapper 内にあるので max-width の干渉なし） */
+.card-grid {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fafafa;
+}
+
+/* auto-fill / auto-fit / minmax */
+.auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.auto-fit {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.minmax-demo {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* カードデザイン */
+.card {
+    background-color: #e7f2ff;
+    padding: 20px;
+    border: 1px solid #bcd8ff;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* コードブロック */
+.code {
+    background-color: #272822;
+    color: #f8f8f2;
+    padding: 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}

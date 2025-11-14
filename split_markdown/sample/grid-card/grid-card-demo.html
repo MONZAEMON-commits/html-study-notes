@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Grid Card Layout Demo（auto-fill / auto-fit / minmax）</title>
+    <link rel="stylesheet" href="grid-card-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>カードレイアウト（Grid 応用）デモ</h1>
+        <p class="page-desc">
+            GitHub Pages のテーマ CSS による <code>max-width</code> 制限を回避するため、
+            wrapper を用いて幅 900px を強制し、auto-fill / auto-fit / minmax の違いが確実に視覚化されるデモです。
+        </p>
+
+        <!-- ============================= -->
+        <!-- 1. auto-fill -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>1. auto-fill（空き枠が残る）</h2>
+
+            <div class="grid-wrapper">
+                <div class="card-grid auto-fill">
+                    <div class="card">Card 1</div>
+                    <div class="card">Card 2</div>
+                    <div class="card">Card 3</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.auto-fill {
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}</code></pre>
+        </section>
+
+        <!-- ============================= -->
+        <!-- 2. auto-fit -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>2. auto-fit（空き枠が埋まる）</h2>
+
+            <div class="grid-wrapper">
+                <div class="card-grid auto-fit">
+                    <div class="card">Card 1</div>
+                    <div class="card">Card 2</div>
+                    <div class="card">Card 3</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.auto-fit {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}</code></pre>
+        </section>
+
+        <!-- ============================= -->
+        <!-- 3. minmax の比較 -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>3. minmax の比較（最小 200px → 最大可変）</h2>
+
+            <div class="grid-wrapper">
+                <div class="card-grid minmax-demo">
+                    <div class="card">カード幅は 200px 以上を維持</div>
+                    <div class="card">画面幅に応じて<br>横に広がる</div>
+                    <div class="card">minmax の挙動が分かる</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.minmax-demo {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

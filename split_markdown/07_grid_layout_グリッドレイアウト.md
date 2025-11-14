@@ -80,42 +80,25 @@ grid-template-columns: 値 値 値 ...;
 
 例文<br>
 `grid-template-columns` の代表的な例の実際の描画は  
-[サンプル（grid-columns-demo.html）](仮) を参照。
+**[サンプル（grid-columns-demo.html）]**(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-columns/grid-columns-demo.html) を参照。
 
-- 3列を等分する
-```css
-grid-template-columns: 1fr 1fr 1fr;
-```
-
-- 固定幅 + 可変幅
-```css
-grid-template-columns: 200px 1fr;
-```
-`→ 左は200px固定、右は残り全部。`
-
-- 全部固定幅（カード一覧など）
-```css
-grid-template-columns: 150px 150px 150px;
-```
-
-- 自然幅（auto）＋可変幅
-```css
-grid-template-columns: auto 1fr;
-```
-`→ 左はコンテンツに合わせる、右は残る幅すべて。`
-
-
-- 最小値〜最大値でしなやかに伸縮
-```css
-grid-template-columns: minmax(150px, 1fr) 1fr;
-```
-`→ レスポンシブで最も頻出。`
-
-- repeat() を使って3列
-```css
-grid-template-columns: repeat(3, 1fr);
-```
-`→ 同じ指定を繰り返したいときに使う（fr の節で詳しく解説）`
+**このデモでは次のパターンをまとめて確認できる：**
+- 1fr 1fr 1fr（3列を等分）<br>
+`→ 横幅を均等に3分割する基本パターン。`
+- 200px 1fr（固定幅＋可変幅）<br>
+`→ サイドバー＋メインの典型レイアウト。`
+- 150px 150px 150px（固定3列）<br>
+`→ 幅を揃えたいカード一覧などに使用。`
+- auto 1fr（自然幅＋可変幅）<br>
+`→ ラベル＋テキスト入力などで自然に幅が決まる。`
+- minmax(150px, 1fr) 1fr（最小〜最大範囲で伸縮）<br>
+`→ 小さい画面では潰れず、大きい画面では余裕をもって伸びる。`
+- repeat(3, 1fr)（等分3列の省略形）<br>
+`→ 同じ指定を簡潔に書ける。`
+- repeat(auto-fill, minmax(150px, 1fr))（※のちの節で詳細）<br>
+`→ 画面幅に応じて列数が自動的に増減（レスポンシブの基本）。`
+- repeat(auto-fit, minmax(150px, 1fr))（※のちの節で詳細）<br>
+`→ 空きスペースを埋めるように配置（より柔軟なレスポンシブ）。`
 
 **注意点（よくあるミス）**
 - **列数は「値の数」で決まる**
@@ -127,4 +110,541 @@ grid-template-columns: repeat(3, 1fr);
 - **auto と fr を混ぜると auto が優先される**
 `→ auto が必要幅を取り、残りを fr が受け取る。`
 
+## grid-template-rows（行の定義）
+### grid-template-rows（行高の定義）
+説明<br>
+`grid-template-rows` は **Grid の「行（Row）」の高さを定義するプロパティ**。<br>
+値をスペース区切りで並べることで、何行構成か・各行の高さを決める。<Br>
+構文<br>
+```css
+grid-template-rows: 値 値 値 ...;
+```
+**属性一覧（使用できる主な値）**
+| 値         | 説明                               | 基準                | 主な用途                               |
+| :--------- | :--------------------------------- | :------------------ | :------------------------------------- |
+| `px`       | 行の高さを固定値で指定             | 親要素の高さ        | 固定ヘッダー・フッター                 |
+| `%`        | パーセンテージで指定               | 親要素の高さ        | 比率で高さを調整                       |
+| `fr`       | 空きスペースを比率で配分（縦方向） | 親要素（残り高さ）  | 可変高さレイアウト                     |
+| `auto`     | コンテンツに合わせて高さを自動調整 | コンテンツの高さ    | テキスト量に応じた自然な行配置         |
+| `minmax()` | 最小〜最大の範囲で高さを伸縮       | min〜max の指定範囲 | レスポンシブ、高さが潰れないようにする |
+| `repeat()` | 同じ行パターンを繰り返す           | 指定回数            | 均一行の複数生成                       |
 
+例文<br>
+`grid-template-rows` の代表的な例の実際の描画は  
+**[サンプル（grid-rows-demo.html）]**(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-rows/grid-rows-demo.html) を参照。
+
+**このデモでは次のパターンをまとめて確認できる：**
+- 80px auto 80px（固定行）
+- 1fr 1fr 1fr（等分3行）
+- 100px 100px 100px（固定3行）
+- auto 1fr（自然高さ＋可変）
+- minmax(120px, auto) 1fr
+
+repeat(4, 1fr)
+**注意点（Rowsで起こりやすいミス）**
+- 親要素の高さがないと fr は働かない<br>
+`→ height: 100vh; や height: 100% が必要。`
+- auto は “最低限必要な高さ” を取る<br>
+`→ テキストが長いと伸びる。`
+- minmax の max に auto を使うと伸縮が自然になる<br>
+`→ recommended：minmax(100px, auto)。`
+- % の基準は親の高さ<br>
+`→ 親に高さ指定がないと計算できない。`
+
+## gap（行・列の間隔）
+説明<br>
+gap は Grid で行（row）・列（column）同士のすき間（間隔）を設定するプロパティ。<br>
+Flexbox にも存在するが、Grid では「行×列」の両方向に働くため、<br>
+レイアウト全体の見やすさ・均整を整えるうえで非常に重要。<br>
+- gap：行と列の両方を同じ値で指定
+- row-gap：行だけ
+- column-gap：列だけ
+- 複数値（例：gap: 20px 40px）で「行 20px、列 40px」という指定も可能
+
+構文
+```css
+gap: 値;
+row-gap: 値;
+column-gap: 値;
+gap: 行 列;
+```
+**属性一覧（使用できる主な値）**
+| 値       | 説明                         | 主な用途                                 |
+| :------- | :--------------------------- | :--------------------------------------- |
+| `px`     | 固定のスペースを指定         | 最も一般的。カード・画像・フォームなど。 |
+| `rem/em` | フォント基準のスペースを指定 | 文字サイズと連動した余白調整             |
+| `%`      | 親要素に対する割合で設定     | レスポンシブだが計算が難しいので非推奨   |
+| `0`      | すき間なし                   | 隣接グリッドを隙間なく並べたい場合       |
+
+例文<br>
+
+`grid-gap` の代表的な例の実際の描画は  
+**[サンプル（grid-gap-demo.html）]**(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-gap/grid-gao-demo.html) を参照。
+
+**このデモでは次のパターンをまとめて確認できる：**
+- gap: 12px;（行・列同じ）
+- row-gap: 20px; column-gap: 40px;（行と列で別々）
+- gap: 0;（隙間なし）
+- gap: 16px 40px;（行 16px / 列 40px）
+- 大量要素のカードグリッド（gapあり・なし比較）
+
+**注意点（よくあるミス）**
+- **margin と混同しがち**<br>
+`→ gap は「Grid 内のセル同士の間隔」`<br>
+`→ margin は「要素自身の外側の余白」`<br>
+- **gap は親要素に設定する**<br>
+`→ 子要素では動作しない。`<br>
+- **gap が効くのは Grid（とFlex）だけ**<br>
+`→ block 要素の行間には使えない。`<br>
+- **行列ごとの gap が必要なら複数値を使う**<br>
+`→ gap: 行 列; の形式を覚えておくと便利。`<br>
+
+## fr と repeat()※Grid の “心臓部”
+説明<br>
+**● fr（fraction：比率による配分）**<br>
+**`fr`** は **`Grid の残りスペースを比率で分配する単位`**。<br>
+レイアウトの柔軟性を最大限に引き出す Grid の “心臓部” ともいえる概念。<br>
+- 1fr 1fr → 残り幅を 1:1 で分割
+- 2fr 1fr → 残り幅を 2:1 で分割
+- auto や px で確保された幅を引いた「残り」を比率で分ける
+
+`Flex の flex-grow と似ているが、Grid は面全体で割り付けるため精度が高い。`
+
+## ● repeat()（繰り返し生成）
+説明<br>
+**`repeat()`** は **`同じパターンを複数回繰り返す記述を簡潔に書く関数`**。<br>
+例：
+```css
+repeat(3, 1fr)
+/* ↑ と ↓ は同じ意味 */
+1fr 1fr 1fr
+```
+**主に以下の2つの用途で使う：**<br>
+- 固定回数の繰り返し（例：repeat(4, 1fr)）
+- auto-fill / auto-fit と併用したレスポンシブ<br>
+`（例：repeat(auto-fit, minmax(150px, 1fr))）`
+
+構文
+```css
+/* fr */
+grid-template-columns: 1fr 2fr 1fr;
+
+/* repeat */
+grid-template-columns: repeat(3, 1fr);
+
+/* auto-fill / auto-fit による応用 */
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+```
+**属性（fr / repeat の挙動の特徴）**
+| 機能                | 説明                                       | 主な用途                          |
+| :------------------ | :----------------------------------------- | :-------------------------------- |
+| `fr`                | 残りスペースを比率で分配                   | 等分・比率分割・自動伸縮          |
+| `auto`              | 内容量に応じて必要最小限の幅を確保         | ラベル＋本文、自然幅の表現        |
+| `px / % `           | 固定・比率ベースの絶対指定                 | 枠を揃えたいとき                  |
+| `repeat(n, 値)`     | 指定した値を n 回繰り返す                  | 等分カラム、均一なカード一覧      |
+| `repeat(auto-fill)` | 可能な限り列を詰めて生成する（空セル含む） | レスポンシブカード（Pinterest風） |
+| `repeat(auto-fit)`  | 空きを吸収してセルが伸びる（隙間が埋まる） | 伸びるレスポンシブレイアウト      |
+
+例文<br>
+`grid-gap` の代表的な例の実際の描画は  
+**[サンプル（grid-gap-demo.html）]**(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-gap/grid-gao-demo.html) を参照。
+
+**このデモでは次のパターンをまとめて確認できる：**
+- 1fr 1fr 1fr（等分）
+- 2fr 1fr（比率レイアウト）
+- 1fr 2fr 1fr（センター強調レイアウト）
+- repeat(3, 1fr)（3等分）
+- repeat(4, 150px)（固定4列）
+- repeat(3, auto)（自然幅の繰り返し）
+- repeat(5, minmax(100px, 1fr))（柔軟カラム）
+- repeat(auto-fill, minmax(150px, 1fr))（グリッド自動生成・空セルあり）
+- repeat(auto-fit, minmax(150px, 1fr))（空きを吸収して伸びる）<br>
+
+**注意点（fr / repeat の落とし穴）**
+- **fr は必ず“残りスペース”が対象**<br>
+`→ px や auto で確保された幅は fr に割り当てられない。`<br>
+
+- **auto + fr は auto が優先**<br>
+`→ まず auto が必要分だけ確保 → 余りを fr に配分。`<br>
+- **auto-fill と auto-fit の違いは“空き枠が残るかどうか”**<br>
+  - `fill → 空セルを残す（枠が詰まって見える）`
+  - `fit → セルが伸びて空きを埋める`
+- **minmax と fr を組み合わせると強力だが挙動が複雑**<br>
+`→ デモで視覚的に理解するのが一番。`<br>
+
+## auto-fill と auto-fit（レスポンシブカラムの自動生成）
+説明<br>
+`auto-fill` と `auto-fit` は、<br>
+**`画面幅に応じてカラム数を自動で増減させる仕組み`** を作るためのキープロパティ。
+- どちらも repeat() と組み合わせて使用する
+- どちらも minmax() と併用するのが基本
+- どちらも「レスポンシブカード」を作るときに多用される<br>
+見た目は似るが、決定的な違いは **`“空きスペースの扱い”`** にある。
+
+**● auto-fill（空セルを残すタイプ）**<br>
+**可能な限りカラムを詰めて生成するが、空き枠もそのまま残す。**<br>
+- 余ったスペースがあっても、セルは伸びない
+- 空セルが存在するため 「詰まった格子」 のような見た目になる
+- Pinterest や画像一覧のような、枠がきっちり揃うタイプに向く
+
+**● auto-fit（空きを吸収するタイプ）**<br>
+**余ったスペースを吸収し、セルが伸びてフィットする。**<br>
+- 空セルが“潰れる（幅0扱い）” → 実質的に見えなくなる
+- セルが横に伸び、隙間が埋まってフラットに揃う
+- グリッド全体がきれいにフィットするため、カードレイアウト向き
+
+構文<br>
+```css
+/* auto-fill：空セルを含めて詰める */
+grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+/* auto-fit：空セルを潰してフィットさせる */
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+```
+**属性一覧（特徴まとめ）**
+| 概念        | 説明                                           | 主な用途                             |
+| ----------- | ---------------------------------------------- | ------------------------------------ |
+| `auto-fill` | 空セルを含めてできる限り詰める（枠が残る）     | Pinterest 風の一覧、詰まったグリッド |
+| `auto-fit`  | 空セルを潰して要素を伸ばし、余白を埋める       | カードレイアウト、自然なレスポンシブ |
+| `minmax()`  | 最小～最大の幅を確保しつつ柔軟に伸縮           | 小さい画面で潰れない設計に必須       |
+| `1fr`       | 余ったスペースを割り当てる（auto-fit と相性◎） | レスポンシブでバランスよく配置       |
+
+例文
+`auto-fill` / `auto-fit` の代表的な例の実際の描画は
+**[サンプル（grid-autofill-fit-demo.html）]**(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-autofill-fit/grid-autofill-fit-demo.html) を参照。
+
+**このデモでは次のパターンをまとめて確認できる：**
+- repeat(auto-fill, minmax(150px, 1fr))（空セルあり）
+- repeat(auto-fit, minmax(150px, 1fr))（空き吸収でフラット化）
+- カードの数を少なくしたときの挙動比較
+- ウィンドウ幅を縮めたときの列数の変化比較
+- minmax の最小幅を変更したときの変化<br>
+`（例：minmax(200px, 1fr)）`
+
+**注意点（よくあるミス）**<br>
+- **minmax の最小値が小さすぎると、カードが潰れる**<br>
+`→ 150px〜200px が実用的な基準。`<br>
+- **auto-fill と auto-fit を“見た目だけ”で判断しないこと**<br>
+`→ ウィンドウ幅を広げたときに差が最も明確に出る。`<br>
+- **auto-fit はセルが伸びるため、画像比率に注意**<br>
+`→ 高さ固定カードとの併用が良い。`<br>
+- **auto-fill は「見えない空き枠」が残りやすい**<br>
+`→ グリッドの左右に余白が見える場合がある。`<br>
+
+
+## justify-content / align-content（Grid 全体の揃え）
+説明<br>
+`justify-content` と `align-content` は、<br>
+**`Grid 全体（グリッド領域そのもの）を親要素の中でどう揃えるか`** を指定するプロパティ。
+- justify-content → **横方向（行方向）** にグリッド領域を揃える
+- align-content → **縦方向（列方向）** にグリッド領域を揃える
+
+ここで操作するのは **各セルではなく“グリッド全体の塊”** である点が重要。<br>
+また、これらのプロパティが機能するのは、<br>
+- **親要素に余白（空きスペース）があるときだけ**
+- グリッドの「行数・列数」が固定されている場合に有効<br>
+
+という制約があるため、挙動の理解にはデモが必須。
+
+構文
+```css
+/* 横方向（左・右・中央・等間隔など） */
+justify-content: start | end | center | stretch | space-between | space-around | space-evenly;
+
+/* 縦方向（上・下・中央・等間隔など） */
+align-content: start | end | center | stretch | space-between | space-around | space-evenly;
+```
+**属性一覧（共通）**
+| 値              | 説明                                           | 見た目の特徴               |
+| --------------- | ---------------------------------------------- | -------------------------- |
+| `start`         | 余白を使って **先頭側に寄せる**                | 左寄せ（横）・上寄せ（縦） |
+| `end`           | 余白を使って **終端側に寄せる**                | 右寄せ（横）・下寄せ（縦） |
+| `center`        | 余白を使って **中央に配置する**                | 真ん中に寄る               |
+| `stretch`       | **余白をすべて使ってグリッド領域を引き伸ばす** | 広がってフィットする       |
+| `space-between` | **両端はくっつけて内部だけ等間隔**             | 端がそろい、中だけ等間隔   |
+| `space-around`  | 要素の **外側にも均等に余白**                  | ふんわり均等               |
+| `space-evenly`  | **全ての間隔が完全に均等**                     | 最も均等な分布             |
+
+例文<br>
+`justify-content` / `align-content` の代表的な例の実際の描画は  
+**[サンプル（grid-content-demo.html）]**(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-content/grid-content-demo.html) を参照。
+
+このデモでは次のパターンをまとめて確認できる：<br>
+- justify-content: start / center / end
+- justify-content: space-between / space-around / space-evenly
+- align-content: start / center / end
+- align-content: space-between / space-around / space-evenly<br>
+`※ デモでは「グリッド領域そのものが動く」ことが分かるように`<br>
+`親要素の高さ・幅を固定して表示します。`
+
+**注意点（Grid 特有のポイント）**
+- **セルの揃え（justify-items / align-items）とは異なる**<br>
+`→ 今回のプロパティは “グリッド全体” を動かす。`<br>
+- **余白がない状態では何も変わらない**<br>
+`→ グリッドの総幅／高さが親要素いっぱいの場合は無効。`<br>
+- **stretch がデフォルトになるケースを理解する**<br>
+`→ 多くの Grid は stretch で広がるため、中央揃えを期待しても変化がないことがある。`<br>
+- **多段の Grid（複数行・複数列）で効果が分かりやすい**<br>
+`→ 行数や列数が固定されているレイアウトで明確。`<br>
+
+## justify-items / align-items（セル内部の揃え）
+説明<br>
+`justify-items` と `align-items` は、<br>
+**`Grid の各セル内で子要素をどう揃えるか`** を指定するプロパティ。<br>
+- `justify-items` → 横方向（行方向）の揃え
+- `align-items` → 縦方向（列方向）の揃え<br>
+また、セルごとに個別に揃えを変えたい場合は：
+- justify-self
+- align-self<br>
+
+を使用する。
+これらは「セルの内部」にフォーカスしており、<br>
+`justify-content` / `align-content` のような グリッド全体の揃えとは異なる。
+
+**content 系（グリッド全体の揃え）とは目的が異なる**ため注意。<br>
+今回扱う items 系はあくまで **セルの中の1つ1つの要素** をどう揃えるかを制御する。<br>
+
+構文<br>
+```css
+/* セル内部の揃え（横方向） */
+justify-items: start | center | end | stretch;
+
+/* セル内部の揃え（縦方向） */
+align-items: start | center | end | stretch;
+
+/* 個別セルごとの上書き */
+justify-self: start | center | end | stretch;
+align-self: start | center | end | stretch;
+```
+**属性一覧**
+| 値        | 説明                                                   | 主な用途                       |
+| --------- | ------------------------------------------------------ | ------------------------------ |
+| `start`   | セル内の先頭側に寄せる（左寄せ / 上寄せ）              | ラベル類の整列                 |
+| `center`  | セル内で中央揃え                                       | アイコン・ボタンのセンタリング |
+| `end`     | セル内の終端側に寄せる（右寄せ / 下寄せ）              | 小要素を端に寄せる UI          |
+| `stretch` | セルの幅・高さいっぱいに要素を引き伸ばす（デフォルト） | カード・ボックスUIの基本       |
+
+例文<br>
+`justify-items` / `align-items` の代表的な例の実際の描画は
+[サンプル（grid-items-demo.html）](https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-items/grid-items-demo.html
+) を参照。
+
+`このデモでは次のパターンをまとめて確認できる：`<br
+- justify-items: start / center / end / stretch
+- align-items: start / center / end / stretch
+- 横方向 × 縦方向のペア（例：center × center）
+- justify-self / align-self による個別セルの上書き
+
+**注意点**
+- **content 系（グリッド全体）との違いが最重要**
+  - items 系 → セル内部
+  - content 系 → グリッド全体
+- **stretch は意図しない広がりを生みやすい**<br>
+`→ ボタンサイズなどは明示的に center を指定する`<br>
+- **セルのサイズ依存で見た目が変わる**<br>
+`→ 余白の大きいセルでは差が明確だが、狭いセルでは差が小さく見える`<br>
+- **セル個別指定（self）が一番強い優先度**<br>
+`→ 特定の位置だけずらしたいときに使用`<br>
+
+## Grid 応用レイアウト（実践パターン）
+**1. カードレイアウト（基本）**
+- **grid-template-columns: repeat(auto-fill, minmax())**
+- カード一覧によく使われる
+- レスポンシブの基礎（幅に応じて行数変動）
+**2. 2カラム・3カラム レイアウト**
+- 固定幅 + 1fr
+- サイドバー付きページ構成
+- 新聞風3カラム
+**3. 完全レスポンシブ化**
+- minmax + auto-fit / auto-fill
+- ブレークポイントを使わないレスポンシブ
+- 画面幅に応じて自然に崩れるグリッド
+**4. よくある UI パターン**
+- ダッシュボードタイル
+- 商品一覧レイアウト
+- 管理画面のパネル配置
+
+## カードレイアウト（Grid 応用）
+説明<br>
+カードレイアウトは、Webサイトの `商品一覧・ブログ一覧・ギャラリー・メディアカード` などで最もよく使われるレイアウト。<br>
+
+`Grid` を使うと：<br>
+- カード幅を 最小値〜最大値の範囲で自動調整
+- 画面幅に応じて 列数が自然に増減
+- メディアクエリなしで レスポンシブ対応<br>
+…といった実装が非常に簡単になる。<br>
+この節では、最もよく使われる次の構文を扱う：<br>
+```css
+grid-template-columns: repeat(auto-fill, minmax(○○, 1fr));
+```
+構文<br>
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+```
+説明（深入り）<br>
+| 構文                   | 役割                                                       |
+| ---------------------- | ---------------------------------------------------------- |
+| `repeat(auto-fill, …)` | コンテナ幅に入るだけカードを詰め込む（空き枠も作る）       |
+| `repeat(auto-fit, …)`  | カード同士が自動的に広がり、空き枠を埋める                 |
+| `minmax(200px, 1fr)`   | カード最小幅 200px を維持しつつ、余白があれば 1fr で伸びる |
+| `gap: 16px;`           | カードの間隔を取る                                         |
+
+例文<br>
+
+カードレイアウト（Grid 応用） の代表的な例の実際の描画は
+[サンプル（grid-card-demo.html）](https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-card/grid-card-demo.html) を参照。
+
+`このデモでは次のパターンをまとめて確認できる：`<br>
+- minmax(200px, 1fr) を使ったカードグリッド
+- auto-fill と auto-fit の違い
+- 画面幅による列数の増減
+- カードの高さ固定／可変の違い
+
+**注意点**<br>
+- **カード幅を固定しない**<br>
+`→ 固定幅にするとレスポンシブ性が失われる。`<br>
+- **auto-fill と auto-fit の違いを理解すること**<br>
+  - auto-fill：空き枠が残る<br>
+  - auto-fit：カードが自動で伸びて空き枠を埋める<br>
+- **minmax の最小値が重要**<br>
+`→ 小さすぎるとスマホで崩れる`<br>
+`→ 大きすぎると2列維持が困難`<br>
+- **カード内のテキスト量が多いと高さが揃わない**<br>
+`→ align-items: start を積極的に使う`<br>
+
+## 2カラム・3カラム レイアウト（Grid 応用）
+**1. 固定幅 + 可変幅（サイドバー＋メイン）**
+```css
+grid-template-columns: 240px 1fr;
+```
+**2. 2カラムの等分**
+```css
+grid-template-columns: 1fr 1fr;
+```
+**3. 3カラムレイアウト**
+```css
+grid-template-columns: 1fr 1fr 1fr;
+```
+**そして実務でよくある UI 例：**<br>
+- サイドバーを固定 & メインを可変
+- 3カラムニュース一覧
+- 複数パネルの管理画面レイアウト
+- 左ナビ固定・右メイン自動拡大<br>
+
+## 2カラム・3カラム レイアウト<br>
+説明<br>
+Webページのレイアウトで最も頻出するのが `2カラム（左右）` と `3カラム（3分割）` の構成。<br>
+Grid を使うと以下のような実装が非常に単純になる：<br>
+- 左固定幅＋右可変幅（よくあるサイドバー＋メイン）
+- 可変幅 1fr の 2 分割
+- 等幅の 3 カラム（ニュース一覧など）
+- 固定幅＋等分の組み合わせ など<br>
+`grid-template-columns` を使うだけで直感的に定義でき、<br>
+`Flex` では扱いにくい **`左右非対称レイアウト`** も簡単に実装できる。<br>
+
+構文<br>
+```css
+/* 左固定幅 + 右可変 */
+grid-template-columns: 240px 1fr;
+
+/* 2カラム（等分） */
+grid-template-columns: 1fr 1fr;
+
+/* 3カラム（等分） */
+grid-template-columns: 1fr 1fr 1fr;
+
+/* 3カラム（固定 + 等分） */
+grid-template-columns: 200px 1fr 1fr;
+```
+
+**値の説明**
+| 値                   | 説明                                       |
+| -------------------- | ------------------------------------------ |
+| `px`                 | 完全固定の幅。サイドバー・広告などに使用   |
+| `fr`                 | 余白を均等に分配する Grid 特有の単位       |
+| `auto`               | コンテンツサイズに合わせて伸縮             |
+| `minmax(a, b)`       | 最小 a、最大 b の範囲でカードやパネル配置  |
+| `repeat(n, pattern)` | パターンを n 回繰り返す（3カラム等分など） |
+
+例文<br>
+`2カラム・3カラム レイアウト` の代表的な例の実際の描画は<br>
+[サンプル（grid-layout-columns-demo.html）]
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-layout-columns/grid-layout-columns-demo.html) を参照。
+
+`このデモでは次のパターンをまとめて確認できる：`<br>
+- 左固定幅（240px）＋右可変（1fr）の 2 カラム
+- 1fr × 2 の等分レイアウト
+- 1fr × 3 の 3 分割カラム
+- 固定幅 + 等分の複合 3 カラム
+
+**注意点**<br>
+- **複雑なレイアウトは Flex ではなく Grid を優先する**<br>
+  - -Grid：縦＋横の2軸レイアウトが得意<br>
+  - Flex：横1軸（または縦1軸）の調整が得意<br>
+- **サイドバー幅は固定した方が安定する**<br>
+`→ 240px 1fr のような構成が実務でよく使われる。`<br>
+- **多段レイアウトは repeat を使うと可読性が上がる**<br>
+  - repeat(3, 1fr) は 1fr 1fr 1fr と同じ<br>
+  - 読みやすく管理しやすい<br>
+- **可変幅（fr）は余白全体に比例する単位**<br>
+`→ Flex の flex-grow と似ているが Grid 専用。`<br>
+
+## 完全レスポンシブレイアウト（ブレークポイント不要）
+説明<br>
+Grid は `minmax()` と `auto-fit` を組み合わせることで、<br>
+**`メディアクエリなしで完全レスポンシブ`** なレイアウトを実現できる。<br>
+
+この組み合わせは：<br>
+- 画面幅に合わせてカード数が増減
+- 自動的に折り返し
+- 空き枠は自動で埋まる
+- スマホ〜PCまで自然に可変<br>
+
+…という非常に強力な仕組みで、<br>
+現代の Web レイアウトでは **最も推奨される構成の1つ。**<br>
+```css
+grid-template-columns: repeat(auto-fit, minmax(○○px, 1fr));
+```
+構文<br>
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+```
+**値の説明**
+| 値                       | 説明                                                     |
+| ------------------------ | -------------------------------------------------------- |
+| `auto-fit`               | カードが広がって空き枠を埋める（完全レスポンシブに最適） |
+| `minmax(最小値, 最大値)` | カードが確保する最小幅と、広がれる最大幅を指定           |
+| `1fr`                    | 余白を均等に分配し、カードを最大限に広げる               |
+| `gap`                    | カードの間隔（レスポンシブでも一定のまま扱える）         |
+
+例文<br>
+
+完全レスポンシブレイアウト の代表的な例の実際の描画は
+[サンプル（grid-responsive-demo.html）]
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/grid-responsive/grid-responsive-demo.html)
+
+このデモでは次のパターンをまとめて確認できる：<br>
+- auto-fit + minmax の基本構成
+- カード幅 240px を下限にしたレスポンシブ変化
+- スマホ：1列
+- タブレット：2列
+- PC：3〜4列
+- 余白があるときカードが自然に広がる挙動
+
+**注意点**<br>
+- **minmax の最小値が小さすぎると崩れる**<br>
+`→ スマホ基準で 180px〜240px が最適。`<br>
+- **カード内のテキスト量に応じて高さが揃わない場合がある**<br>
+`→ 実務では align-items: start を併用することが多い。`<br>
+- **カードの最大値（1fr）は親幅に依存する**<br>
+`→ wrapper や余白の設定で最終的な横幅が決まる。`<br>
+- **auto-fill は完全レスポンシブには向かない**<br>
+`→ 空き枠を残すため、カードが伸びず不自然な隙間ができる。`<br>

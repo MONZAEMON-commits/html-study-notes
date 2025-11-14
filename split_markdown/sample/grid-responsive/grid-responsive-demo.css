@@ -1,0 +1,58 @@
+/* 共通デザイン */
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* 最重要：レスポンシブが効くように必須 */
+.page {
+    max-width: 960px;
+    width: 100%;
+    /* ← これが命。絶対必要！ */
+    margin: 32px auto;
+    padding: 0 16px 48px;
+}
+
+.example {
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px 20px 20px;
+    margin-bottom: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive Grid 本体 */
+.responsive-grid {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+    padding: 16px;
+    background: #fafafa;
+    border: 1px solid #ddd;
+
+    /* 完全レスポンシブの肝 */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* カードの見た目 */
+.card {
+    background: #e7f2ff;
+    border: 1px solid #bcd8ff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* コードブロック */
+.code {
+    background: #272822;
+    color: #f8f8f2;
+    padding: 10px;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}

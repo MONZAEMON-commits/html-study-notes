@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Grid Layout Columns Demo（2カラム・3カラム）</title>
+    <link rel="stylesheet" href="grid-layout-columns-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>2カラム・3カラム レイアウト（Grid 応用）デモ</h1>
+        <p class="page-desc">
+            GitHub Pages のテーマCSSがコンテンツ幅を制限するため、wrapper を使用して幅 900px を強制し、
+            2カラム・3カラムの Grid レイアウトを視覚的に確認できるデモです。
+        </p>
+
+        <!-- ============================= -->
+        <!-- 1. 左固定幅 + 右可変 -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>1. 左固定幅（240px）＋右可変（1fr）</h2>
+
+            <div class="grid-wrapper">
+                <div class="layout-grid fixed-main">
+                    <div class="box side">Sidebar</div>
+                    <div class="box main">Main Content</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.fixed-main {
+  grid-template-columns: 240px 1fr;
+}</code></pre>
+        </section>
+
+        <!-- ============================= -->
+        <!-- 2. 2カラム（等分） -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>2. 2カラム（1fr × 2）</h2>
+
+            <div class="grid-wrapper">
+                <div class="layout-grid two-cols">
+                    <div class="box">Column 1</div>
+                    <div class="box">Column 2</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.two-cols {
+  grid-template-columns: 1fr 1fr;
+}</code></pre>
+        </section>
+
+        <!-- ============================= -->
+        <!-- 3. 3カラム（等分） -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>3. 3カラム（1fr × 3）</h2>
+
+            <div class="grid-wrapper">
+                <div class="layout-grid three-cols">
+                    <div class="box">Col A</div>
+                    <div class="box">Col B</div>
+                    <div class="box">Col C</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.three-cols {
+  grid-template-columns: 1fr 1fr 1fr;
+}</code></pre>
+        </section>
+
+        <!-- ============================= -->
+        <!-- 4. 複合レイアウト（固定 + 等分） -->
+        <!-- ============================= -->
+        <section class="example">
+            <h2>4. 固定幅 + 等分（200px + 1fr + 1fr）</h2>
+
+            <div class="grid-wrapper">
+                <div class="layout-grid mix-cols">
+                    <div class="box side">Side</div>
+                    <div class="box">Main 1</div>
+                    <div class="box">Main 2</div>
+                </div>
+            </div>
+
+            <pre class="code"><code>.mix-cols {
+  grid-template-columns: 200px 1fr 1fr;
+}</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

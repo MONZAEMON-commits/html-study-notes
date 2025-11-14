@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Grid Items Align Demo（justify-items / align-items）</title>
+    <link rel="stylesheet" href="grid-items-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>justify-items / align-items のデモ一覧</h1>
+        <p class="page-desc">
+            Grid の各セル内部で要素をどう揃えるかを比較できるデモです。<br />
+            <code>justify-items</code>（横）、<code>align-items</code>（縦）、<code>justify-self</code> /
+            <code>align-self</code> の挙動を視覚的に確認できます。
+        </p>
+
+        <section class="example">
+            <h2>デモの前提</h2>
+            <p class="desc">
+                グリッドは 3×3（9セル）で固定。<br />
+                セルの高さを広めにして <code>stretch</code> の挙動が分かるよう調整しています。
+            </p>
+        </section>
+
+        <!-- ===================================== -->
+        <!-- 1. justify-items（横方向） -->
+        <!-- ===================================== -->
+        <section class="example">
+            <h2>1. 横方向の揃え：justify-items</h2>
+
+            <h3>start（左寄せ）</h3>
+            <div class="items-demo ji-start">
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+            <pre class="code"><code>.ji-start { justify-items: start; }</code></pre>
+
+            <h3>center（中央揃え）</h3>
+            <div class="items-demo ji-center">
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+            <pre class="code"><code>.ji-center { justify-items: center; }</code></pre>
+
+            <h3>end（右寄せ）</h3>
+            <div class="items-demo ji-end">
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+            <pre class="code"><code>.ji-end { justify-items: end; }</code></pre>
+
+            <h3>stretch（横方向に伸びる）</h3>
+            <div class="items-demo ji-stretch">
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+                <div class="item stretch-x">■</div>
+            </div>
+            <pre class="code"><code>.ji-stretch { justify-items: stretch; }</code></pre>
+        </section>
+
+        <!-- ===================================== -->
+        <!-- 2. align-items（縦方向） -->
+        <!-- ===================================== -->
+        <section class="example">
+            <h2>2. 縦方向の揃え：align-items</h2>
+
+            <h3>start（上寄せ）</h3>
+            <div class="items-demo ai-start">
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+            <pre class="code"><code>.ai-start { align-items: start; }</code></pre>
+
+            <h3>center（中央）</h3>
+            <div class="items-demo ai-center">
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+            <pre class="code"><code>.ai-center { align-items: center; }</code></pre>
+
+            <h3>end（下寄せ）</h3>
+            <div class="items-demo ai-end">
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+            <pre class="code"><code>.ai-end { align-items: end; }</code></pre>
+
+            <h3>stretch（縦方向に伸びる）</h3>
+            <div class="items-demo ai-stretch">
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+                <div class="item stretch-y">■</div>
+            </div>
+            <pre class="code"><code>.ai-stretch { align-items: stretch; }</code></pre>
+        </section>
+
+        <!-- ===================================== -->
+        <!-- 3. self 系 -->
+        <!-- ===================================== -->
+        <section class="example">
+            <h2>3. 個別セルの揃え：justify-self / align-self</h2>
+
+            <div class="items-demo self-demo">
+                <div class="item js-start">■</div>
+                <div class="item js-end">■</div>
+                <div class="item as-start">■</div>
+                <div class="item as-end">■</div>
+                <div class="item center-ref">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+                <div class="item">■</div>
+            </div>
+
+            <pre class="code"><code>.self-demo {
+  justify-items: center;
+  align-items: center;
+}
+
+.js-start { justify-self: start; }
+.js-end   { justify-self: end; }
+
+.as-start { align-self: start; }
+.as-end   { align-self: end; }</code></pre>
+        </section>
+
+    </main>
+</body>
+
+</html>

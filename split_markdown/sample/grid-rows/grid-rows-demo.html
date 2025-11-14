@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>grid-template-rows デモ</title>
+    <link rel="stylesheet" href="grid-rows-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>grid-template-rows の基本例</h1>
+        <p class="page-desc">
+            行の高さ（Row）に関する代表的な指定パターンをまとめたデモです。<br />
+            各例で <code>grid-template-rows</code> の違いを視覚的に確認できます。
+        </p>
+
+        <!-- 1. 固定行（ヘッダー＋メイン＋フッター） -->
+        <section class="example">
+            <h2>1. 固定行（<code>80px auto 80px</code>）</h2>
+            <p class="desc">上と下が固定高さ、中央が可変。</p>
+            <div class="grid-demo grid-fixed-header">
+                <div class="item">Header</div>
+                <div class="item">Main</div>
+                <div class="item">Footer</div>
+            </div>
+            <pre class="code"><code>.grid-fixed-header {
+  display: grid;
+  height: 240px;
+  grid-template-rows: 80px auto 80px;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 2. 等分3行 -->
+        <section class="example">
+            <h2>2. 等分3行（<code>1fr 1fr 1fr</code>）</h2>
+            <p class="desc">高さを均等に3分割する。</p>
+            <div class="grid-demo grid-equal-rows">
+                <div class="item">Row1</div>
+                <div class="item">Row2</div>
+                <div class="item">Row3</div>
+            </div>
+            <pre class="code"><code>.grid-equal-rows {
+  display: grid;
+  height: 300px;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 3. 全部固定高さ -->
+        <section class="example">
+            <h2>3. 全部固定高さ（<code>100px 100px 100px</code>）</h2>
+            <p class="desc">どの行も必ず同じ高さ。</p>
+            <div class="grid-demo grid-fixed-all">
+                <div class="item">Row1</div>
+                <div class="item">Row2</div>
+                <div class="item">Row3</div>
+            </div>
+            <pre class="code"><code>.grid-fixed-all {
+  display: grid;
+  grid-template-rows: 100px 100px 100px;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 4. auto + fr -->
+        <section class="example">
+            <h2>4. 自然高さ + 可変高さ（<code>auto 1fr</code>）</h2>
+            <p class="desc">上はコンテンツの高さ、下は残りすべて。</p>
+            <div class="grid-demo grid-auto-fr">
+                <div class="item">自然高さ（テキスト量に応じて決まる）</div>
+                <div class="item">残り全部の高さ</div>
+            </div>
+            <pre class="code"><code>.grid-auto-fr {
+  display: grid;
+  height: 260px;
+  grid-template-rows: auto 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 5. minmax -->
+        <section class="example">
+            <h2>5. minmax（<code>minmax(120px, auto) 1fr</code>）</h2>
+            <p class="desc">最小値を下回らず、必要に応じて伸びる。</p>
+            <div class="grid-demo grid-minmax">
+                <div class="item">Row1</div>
+                <div class="item">Row2</div>
+            </div>
+            <pre class="code"><code>.grid-minmax {
+  display: grid;
+  height: 260px;
+  grid-template-rows: minmax(120px, auto) 1fr;
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 6. repeat（4行） -->
+        <section class="example">
+            <h2>6. repeat（<code>repeat(4, 1fr)</code>）</h2>
+            <p class="desc">同じ行を複数生成したい場合に便利。</p>
+            <div class="grid-demo grid-repeat">
+                <div class="item">Row1</div>
+                <div class="item">Row2</div>
+                <div class="item">Row3</div>
+                <div class="item">Row4</div>
+            </div>
+            <pre class="code"><code>.grid-repeat {
+  display: grid;
+  height: 240px;
+  grid-template-rows: repeat(4, 1fr);
+  gap: 12px;
+}</code></pre>
+        </section>
+    </main>
+</body>
+
+</html>

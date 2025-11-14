@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Grid Content Align Demo（justify-content / align-content）</title>
+    <link rel="stylesheet" href="grid-content-demo.css" />
+</head>
+
+<body>
+    <main class="page">
+        <h1>justify-content / align-content のデモ一覧</h1>
+        <p class="page-desc">
+            Grid 全体を親要素の中でどう配置するかを示すプロパティ。<br />
+            <code>justify-content</code>（横方向）と <code>align-content</code>（縦方向）の違いが一目で分かるデモです。
+        </p>
+
+        <!-- 説明セクション -->
+        <section class="example">
+            <h2>デモの前提</h2>
+            <p class="desc">
+                親要素は幅600px・高さ300pxに固定。<br />
+                中のグリッドは 2×2 固定で、空白をどう扱うかが見える構成になっています。
+            </p>
+        </section>
+
+        <!-- ======================== -->
+        <!-- 1. justify-content (横方向) -->
+        <!-- ======================== -->
+        <section class="example">
+            <h2>1. 横方向の揃え：justify-content</h2>
+
+            <!-- start -->
+            <h3>start（左寄せ）</h3>
+            <div class="content-demo jc-start">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.jc-start {
+  justify-content: start;
+}</code></pre>
+
+            <!-- center -->
+            <h3>center（中央揃え）</h3>
+            <div class="content-demo jc-center">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.jc-center {
+  justify-content: center;
+}</code></pre>
+
+            <!-- end -->
+            <h3>end（右寄せ）</h3>
+            <div class="content-demo jc-end">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.jc-end {
+  justify-content: end;
+}</code></pre>
+
+            <!-- space-between -->
+            <h3>space-between</h3>
+            <div class="content-demo jc-between">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.jc-between {
+  justify-content: space-between;
+}</code></pre>
+
+            <!-- space-around -->
+            <h3>space-around</h3>
+            <div class="content-demo jc-around">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.jc-around {
+  justify-content: space-around;
+}</code></pre>
+
+            <!-- space-evenly -->
+            <h3>space-evenly</h3>
+            <div class="content-demo jc-evenly">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.jc-evenly {
+  justify-content: space-evenly;
+}</code></pre>
+        </section>
+
+        <!-- ======================== -->
+        <!-- 2. align-content (縦方向) -->
+        <!-- ======================== -->
+        <section class="example">
+            <h2>2. 縦方向の揃え：align-content</h2>
+
+            <!-- start -->
+            <h3>start（上寄せ）</h3>
+            <div class="content-demo ac-start">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.ac-start {
+  align-content: start;
+}</code></pre>
+
+            <!-- center -->
+            <h3>center（縦方向の中央）</h3>
+            <div class="content-demo ac-center">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.ac-center {
+  align-content: center;
+}</code></pre>
+
+            <!-- end -->
+            <h3>end（下寄せ）</h3>
+            <div class="content-demo ac-end">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.ac-end {
+  align-content: end;
+}</code></pre>
+
+            <!-- space-between -->
+            <h3>space-between</h3>
+            <div class="content-demo ac-between">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.ac-between {
+  align-content: space-between;
+}</code></pre>
+
+            <!-- space-around -->
+            <h3>space-around</h3>
+            <div class="content-demo ac-around">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.ac-around {
+  align-content: space-around;
+}</code></pre>
+
+            <!-- space-evenly -->
+            <h3>space-evenly</h3>
+            <div class="content-demo ac-evenly">
+                <div class="box">1</div>
+                <div class="box">2</div>
+                <div class="box">3</div>
+                <div class="box">4</div>
+            </div>
+            <pre class="code"><code>.ac-evenly {
+  align-content: space-evenly;
+}</code></pre>
+
+        </section>
+
+    </main>
+</body>
+
+</html>

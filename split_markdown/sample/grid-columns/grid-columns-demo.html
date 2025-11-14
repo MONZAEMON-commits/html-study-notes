@@ -3,24 +3,22 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>grid-template-columns デモ</title>
+    <title>grid-template-columns デモ（完全版）</title>
     <link rel="stylesheet" href="grid-columns-demo.css" />
 </head>
 
 <body>
     <main class="page">
-        <h1>grid-template-columns の基本例</h1>
+        <h1>grid-template-columns の例一覧（完全版）</h1>
         <p class="page-desc">
-            代表的な列幅の指定パターンをまとめたデモです。<br />
-            各例で <code>grid-template-columns</code> の指定を変更してレイアウトの違いを確認できます。
+            代表的な列幅指定のパターンをすべてまとめて視覚的に確認できるデモです。<br />
+            全部使う必要はありませんが、Grid の特性上「どんな指定があるか」を見ておくことが理解の近道になります。
         </p>
 
-        <!-- 1. 3列を等分する -->
+        <!-- 1. 3列を等分（1fr 1fr 1fr） -->
         <section class="example">
             <h2>1. 3列を等分する（<code>1fr 1fr 1fr</code>）</h2>
-            <p class="desc">
-                横幅を3等分する基本的なパターン。画面幅に応じて各列が同じ割合で伸び縮みします。
-            </p>
+            <p class="desc">横幅を均等に3分割する基本パターン。</p>
             <div class="grid-demo grid-equal">
                 <div class="item">1</div>
                 <div class="item">2</div>
@@ -33,16 +31,13 @@
 }</code></pre>
         </section>
 
-        <!-- 2. 固定幅 + 可変幅 -->
+        <!-- 2. 固定幅＋可変幅 -->
         <section class="example">
-            <h2>2. 固定幅 + 可変幅（<code>200px 1fr</code>）</h2>
-            <p class="desc">
-                左のカラムは常に200px、右のカラムが残りの幅をすべて受け取ります。
-                サイドバー＋コンテンツのようなレイアウトに使います。
-            </p>
+            <h2>2. 固定幅＋可変幅（<code>200px 1fr</code>）</h2>
+            <p class="desc">左は固定幅、右が残りすべてを受け取る。</p>
             <div class="grid-demo grid-fixed-flex">
                 <div class="item">サイドバー</div>
-                <div class="item">メインコンテンツ</div>
+                <div class="item">メイン</div>
             </div>
             <pre class="code"><code>.grid-fixed-flex {
   display: grid;
@@ -54,14 +49,11 @@
         <!-- 3. 全部固定幅 -->
         <section class="example">
             <h2>3. 全部固定幅（<code>150px 150px 150px</code>）</h2>
-            <p class="desc">
-                すべての列を同じ固定幅にするパターン。カード一覧やアイコンのグリッドなど、
-                幅を揃えたいときに使用します。
-            </p>
+            <p class="desc">カード一覧など幅を揃えたい場面に。</p>
             <div class="grid-demo grid-fixed-all">
-                <div class="item">カード1</div>
-                <div class="item">カード2</div>
-                <div class="item">カード3</div>
+                <div class="item">A</div>
+                <div class="item">B</div>
+                <div class="item">C</div>
             </div>
             <pre class="code"><code>.grid-fixed-all {
   display: grid;
@@ -70,16 +62,13 @@
 }</code></pre>
         </section>
 
-        <!-- 4. auto + fr -->
+        <!-- 4. auto + 1fr -->
         <section class="example">
-            <h2>4. 自然幅 + 可変幅（<code>auto 1fr</code>）</h2>
-            <p class="desc">
-                左のカラムはコンテンツの幅に合わせて決まり、右のカラムが残りのスペースを受け取ります。
-                ラベル + 入力欄のようなレイアウトに向いています。
-            </p>
+            <h2>4. 自然幅＋可変幅（<code>auto 1fr</code>）</h2>
+            <p class="desc">左列は内容に合わせる、右列は残りすべて。</p>
             <div class="grid-demo grid-auto-fr">
-                <div class="item">ラベルのテキスト</div>
-                <div class="item">入力欄や本文テキスト</div>
+                <div class="item">ラベルテキスト</div>
+                <div class="item">本文（長めの文章にも耐える）</div>
             </div>
             <pre class="code"><code>.grid-auto-fr {
   display: grid;
@@ -88,16 +77,13 @@
 }</code></pre>
         </section>
 
-        <!-- 5. minmax を使った伸縮 -->
+        <!-- 5. minmax -->
         <section class="example">
-            <h2>5. 最小〜最大の範囲で伸縮（<code>minmax(150px, 1fr)</code>）</h2>
-            <p class="desc">
-                列幅の下限と上限を指定するパターン。小さい画面では潰れすぎないようにしつつ、
-                大きい画面では余裕を持って広がるレイアウトにできます。
-            </p>
+            <h2>5. 最小〜最大で伸縮（<code>minmax(150px, 1fr) 1fr</code>）</h2>
+            <p class="desc">潰れすぎない＋広がる可変レイアウト。</p>
             <div class="grid-demo grid-minmax">
-                <div class="item">左カラム</div>
-                <div class="item">右カラム</div>
+                <div class="item">左</div>
+                <div class="item">右</div>
             </div>
             <pre class="code"><code>.grid-minmax {
   display: grid;
@@ -105,6 +91,63 @@
   gap: 12px;
 }</code></pre>
         </section>
+
+        <!-- 6. repeat(3, 1fr) -->
+        <section class="example">
+            <h2>6. repeat（<code>repeat(3, 1fr)</code>）</h2>
+            <p class="desc">等分3列の省略形。</p>
+            <div class="grid-demo grid-repeat">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+            </div>
+            <pre class="code"><code>.grid-repeat {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 7. auto-fill -->
+        <section class="example">
+            <h2>7. auto-fill（<code>repeat(auto-fill, minmax(150px, 1fr))</code>）</h2>
+            <p class="desc">
+                スペースがあれば「空の枠」も含めて横に詰めて配置する。
+                画面幅に応じて列数が自動的に増える。
+            </p>
+            <div class="grid-demo grid-autofill">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+            <pre class="code"><code>.grid-autofill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
+        <!-- 8. auto-fit -->
+        <section class="example">
+            <h2>8. auto-fit（<code>repeat(auto-fit, minmax(150px, 1fr))</code>）</h2>
+            <p class="desc">
+                空きスペースを埋めるように要素を「伸ばす」。
+                auto-fill と違って余白を持たせずフィットさせる。
+            </p>
+            <div class="grid-demo grid-autofit">
+                <div class="item">1</div>
+                <div class="item">2</div>
+                <div class="item">3</div>
+                <div class="item">4</div>
+            </div>
+            <pre class="code"><code>.grid-autofit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}</code></pre>
+        </section>
+
     </main>
 </body>
 
