@@ -1,0 +1,51 @@
+/* ベースデザイン */
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #f5f5f5;
+    padding: 32px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Admin Panel Grid */
+.admin-grid {
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    /* PC向けは3列、スマホは自動で1列 */
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* パネル共通 */
+.panel {
+    background: #fdfdfd;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.panel h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+/* 大型パネル（2列分の幅を持たせる） */
+.panel-large {
+    grid-column: span 2;
+}
+
+/* スマホ時は span を解除して1列に戻す */
+@media (max-width: 700px) {
+    .panel-large {
+        grid-column: span 1;
+    }
+}

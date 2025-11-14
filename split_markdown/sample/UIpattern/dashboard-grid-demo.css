@@ -1,0 +1,61 @@
+/* ベースデザイン */
+body {
+    margin: 0;
+    font-family: system-ui, sans-serif;
+    background: #f5f5f5;
+    padding: 32px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Dashboard Grid 本体 */
+.dashboard-grid {
+    display: grid;
+    gap: 16px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    /* 画面幅に応じて自動調整 */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* タイル共通スタイル */
+.tile {
+    padding: 24px;
+    background: #e7f2ff;
+    border: 1px solid #bcd8ff;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* 色変化（視覚的に違いを出すだけ） */
+.tile-a {
+    background: #eaf5ff;
+}
+
+.tile-b {
+    background: #e3fcf3;
+}
+
+.tile-c {
+    background: #fff4e5;
+}
+
+.tile-d {
+    background: #fce8f3;
+}
+
+.tile-e {
+    background: #f2e9ff;
+}
+
+.tile-f {
+    background: #f0f7ff;
+}

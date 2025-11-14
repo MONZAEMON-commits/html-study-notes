@@ -446,6 +446,14 @@ align-self: start | center | end | stretch;
 - **セル個別指定（self）が一番強い優先度**<br>
 `→ 特定の位置だけずらしたいときに使用`<br>
 
+
+
+
+
+
+
+
+
 ## Grid 応用レイアウト（実践パターン）
 **1. カードレイアウト（基本）**
 - **grid-template-columns: repeat(auto-fill, minmax())**
@@ -639,6 +647,15 @@ grid-template-columns: repeat(auto-fit, minmax(○○px, 1fr));
 - PC：3〜4列
 - 余白があるときカードが自然に広がる挙動
 
+### 🔍 注意：DevTools（分割ビュー）では Grid のレスポンシブが正しく発動しません<br>
+Chrome DevTools の “分割ビュー（Split view）” は、ページを iframe 内で描画するため、<br>
+ページ本体の幅が縮まず、 `auto-fit` や `minmax()` を使った Grid のレスポンシブ挙動が働きません。<br>
+**正しく動作を確認するには：**<br>
+1. デモページをブラウザで直接開く  <br>
+2. DevTools のデバイスツールバーを使う<br>  
+   （またはブラウザウインドウ自体を縮める）<br>
+この方法で、スマホ〜PC まで自然にカラム数が変化する Grid の挙動を確認できます。<br>
+
 **注意点**<br>
 - **minmax の最小値が小さすぎると崩れる**<br>
 `→ スマホ基準で 180px〜240px が最適。`<br>
@@ -648,3 +665,73 @@ grid-template-columns: repeat(auto-fit, minmax(○○px, 1fr));
 `→ wrapper や余白の設定で最終的な横幅が決まる。`<br>
 - **auto-fill は完全レスポンシブには向かない**<br>
 `→ 空き枠を残すため、カードが伸びず不自然な隙間ができる。`<br>
+
+## よくある UI パターン（Grid 実務編）
+説明<br>
+Grid は、単なる“カードの並び”だけでなく、<br>
+**実務の UI レイアウト全般に利用できる強力な仕組み**です。<br>
+この節では、実際の Web サイトや管理画面でよく使われる<br>
+典型的な UI パターンを Grid を使って再現します。<br>
+以下の UI はすべて Grid の基礎だけで作ることができ、<br>
+Flex では難しい 複数軸のレイアウト制御が直感的に書けます。<br>
+
+この節で扱うパターンは次の 4 種類：<br>
+- ダッシュボード風タイル（Widget / Card）
+- 商品一覧レイアウト（EC風カード）
+- 管理画面の情報パネル（Admin Panel）
+- 画像ギャラリー（等間隔グリッド）
+
+**パターン一覧（説明＋構文）**<br>
+**`1. ダッシュボード風タイル`**<br>
+管理ツールや社内システムでよく使われるタイル状 UI。<br>
+`repeat(auto-fit, minmax())` を使うことで、<br>
+小さなカードでも画面幅に合わせて自然に折り返す。<br>
+```css
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+```
+例文<br>
+`dashboard-grid` の代表的な例の実際の描画は<br>
+[サンプル（dashboard-grid-demo.html）]<br>
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/UIpattern/dashboard-grid-demo.html)を参照。<br>
+
+**`2. 商品一覧レイアウト（ECカード）`**<br>
+画像つきの縦型カード UI。<br>
+PC では複数列、スマホでは 1 列に変化する。<br>
+```css
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+```
+例文<br>
+`product-grid` の代表的な例の実際の描画は<br>
+[サンプル（product-grid-demo.html）]<br>
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/UIpattern/product-grid-demo.html)を参照。<br>
+
+**`3. 管理画面の情報パネル（Admin Panel）`**
+複数の情報カードを<br>
+「大きさの違うカード混在」で配置する典型的パターン。<br>
+Grid なら複合サイズが自然に配置できる。<br>
+```css
+grid-template-columns: repeat(3, 1fr);
+```
+`admin-panel-grid` の代表的な例の実際の描画は<br>
+[サンプル（admin-panel-grid-demo.html）]<br>
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/UIpattern/admin-panel-grid-demo.html)を参照。<br>
+
+**`4. 画像ギャラリー（正方形・縦横揃え）`**<br>
+写真一覧・ギャラリー・サムネイルに最適。<br>
+`object-fit: cover` を組み合わせることで実務レベルの仕上がりになる。<br>
+```css
+grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+```
+`gallery-grid` の代表的な例の実際の描画は<br>
+[サンプル（gallery-grid-demo.html）]<br>
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/UIpattern/gallery-grid-demo.html)を参照。<br>
+
+**注意点**<br>
+- **縦横サイズが混在する場合は Grid が強い**<br>
+`Flex では縦方向の整列が難しい。`<br>
+- **画像ギャラリーは object-fit: cover が必須**<br>
+`→ 画像が縦長・横長でもきれいに揃う。`<br>
+- **repeat(auto-fit) / minmax の組み合わせは事実上の標準**<br>
+`多くの UI パターンで活用できる。`<br>
+- **wrapper を固定幅にするとレスポンシブが壊れる**<br>
+`→ デモは原則 wrapper なし（A案）で統一する。`<br>
