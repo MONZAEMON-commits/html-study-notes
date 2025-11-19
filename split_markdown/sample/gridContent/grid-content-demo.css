@@ -1,0 +1,132 @@
+/* =========================================================
+   ベースデザイン
+========================================================= */
+body {
+    margin: 0;
+    padding: 32px;
+    background: #f5f5f5;
+    font-family: system-ui, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.note {
+    background: #fff8dd;
+    padding: 16px;
+    border-left: 6px solid #f1c40f;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.example-title {
+    margin-top: 16px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+/* =========================================================
+   Grid Base
+========================================================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 40px);
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    background: #ffffff;
+    width: 300px;
+    /* 横方向の比較がしやすいサイズ */
+    height: 80px;
+    /* 横方向は高さ固定（気にしなくてOK） */
+}
+
+.grid div {
+    background: #e7f2ff;
+    border: 1px solid #bcd8ff;
+    border-radius: 4px;
+    text-align: center;
+    padding: 8px 0;
+}
+
+/* =========================================================
+   justify-content（横方向）
+========================================================= */
+.grid-justify-start {
+    justify-content: start;
+}
+
+.grid-justify-center {
+    justify-content: center;
+}
+
+.grid-justify-end {
+    justify-content: end;
+}
+
+.grid-justify-between {
+    justify-content: space-between;
+}
+
+.grid-justify-around {
+    justify-content: space-around;
+}
+
+.grid-justify-evenly {
+    justify-content: space-evenly;
+}
+
+/* =========================================================
+   Vertical Grid Base（縦方向比較用）
+========================================================= */
+.grid-vertical {
+    display: grid;
+    grid-template-rows: repeat(3, 40px);
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    background: #ffffff;
+    width: 80px;
+    /* 横幅は小さく */
+    height: 200px;
+    /* 余白が生まれやすい縦長サイズ */
+}
+
+.grid-vertical div {
+    background: #e3fcf3;
+    border: 1px solid #9ddbc8;
+    border-radius: 4px;
+    text-align: center;
+    padding: 8px 0;
+}
+
+/* =========================================================
+   align-content（縦方向）
+========================================================= */
+.grid-align-start {
+    align-content: start;
+}
+
+.grid-align-center {
+    align-content: center;
+}
+
+.grid-align-end {
+    align-content: end;
+}
+
+.grid-align-between {
+    align-content: space-between;
+}
+
+.grid-align-around {
+    align-content: space-around;
+}
+
+.grid-align-evenly {
+    align-content: space-evenly;
+}

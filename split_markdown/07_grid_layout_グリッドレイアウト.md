@@ -446,14 +446,6 @@ align-self: start | center | end | stretch;
 - **セル個別指定（self）が一番強い優先度**<br>
 `→ 特定の位置だけずらしたいときに使用`<br>
 
-
-
-
-
-
-
-
-
 ## Grid 応用レイアウト（実践パターン）
 **1. カードレイアウト（基本）**
 - **grid-template-columns: repeat(auto-fill, minmax())**
@@ -735,3 +727,146 @@ grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 `多くの UI パターンで活用できる。`<br>
 - **wrapper を固定幅にするとレスポンシブが壊れる**<br>
 `→ デモは原則 wrapper なし（A案）で統一する。`<br>
+
+## Grid の揃え（content 系）
+説明<br>
+Grid には **グリッド全体の余白や位置を揃えるためのプロパティ** があり、<br>
+これは「セル内部を揃える items 系」とは目的がまったく異なる。<br>
+
+- items 系：<br>
+`→ 各セル 内の要素をどう揃えるか`<br>
+- content 系（今回のテーマ）：<br>
+`→ グリッド全体をどう配置するか`<br>
+`→ 余ったスペースをどう配分するか`<br>
+`→ グリッドを中央寄せ・上下中央寄せする`<br>
+`→ 余白を均等配置する（space-between 等）`<br>
+
+特に Flexbox の justify-content / align-content と<br>
+**同じ名称だが挙動が違うため要注意。**<br>
+
+構文<br>
+```css
+/* 横方向の揃え（グリッド全体） */
+justify-content: start | center | end | stretch | space-between | space-around | space-evenly;
+
+/* 縦方向の揃え（グリッド全体） */
+align-content: start | center | end | stretch | space-between | space-around | space-evenly;
+
+/* 縦＋横のまとめ指定 */
+place-content: <align-content> <justify-content>;
+```
+
+**属性一覧**<br>
+
+- justify-content（横方向にグリッド全体を揃える）
+
+| 値              | 説明                                             | 主な用途                   |
+| --------------- | ------------------------------------------------ | -------------------------- |
+| `start`         | グリッド全体を左側に寄せる                       | 左詰めカードUI             |
+| `center`        | グリッド全体を左右中央に寄せる                   | 中央寄せのギャラリー       |
+| `end`           | グリッド全体を右側に寄せる                       | 右寄せレイアウト           |
+| `stretch`       | 空きスペースを均等に伸ばし、横幅いっぱいに広げる | 幅いっぱいに敷き詰めたい時 |
+| `space-between` | 左右端に貼り付き、中間が均等に空く               | PC のメニューUI            |
+| `space-around`  | 各アイテムの周囲に均等な余白                     | 均一マージンの並び         |
+| `space-evenly`  | すべての間隔が完全に均等                         | もっとも均等な並び         |
+
+- align-content（縦方向のグリッド全体の揃え）
+
+| 値              | 説明                               | 主な用途               |
+| --------------- | ---------------------------------- | ---------------------- |
+| `start`         | グリッドを上側へ寄せる             | 上詰めのカード一覧     |
+| `center`        | グリッド全体を縦方向の中央へ寄せる | ギャラリーの縦中央配置 |
+| `end`           | グリッド全体を下側へ寄せる         | 下詰めレイアウト       |
+| `stretch`       | 余白を均等に伸ばして縦方向に広げる | 全体を縦方向に満たす   |
+| `space-between` | 上下端に貼り付き、中間が均等に空く | 均一な縦並び           |
+| `space-around`  | 上下方向で均等な外周余白をつける   | 均一マージンの縦並び   |
+| `space-evenly`  | 上下すべての余白が均等             | 均等配置レイアウト     |
+
+例文<br>
+
+justify-content / align-content の代表的な例の実際の描画は
+[サンプル（grid-content-demo.html）]
+(https://monzaemon-commits.github.io/html-study-notes/split_markdown/sample/gridContent/grid-content-demo.html) を参照。
+
+**このデモでは次のパターンをまとめて確認できる：**
+- 横方向の揃え：start / center / end / stretch
+- 横方向：space-between / space-around / space-evenly
+- 縦方向の揃え：start / center / end / stretch
+- 縦方向：space-between / space-around / space-evenly
+- place-content のまとめ指定（例：place-content: center space-between）
+
+**注意点**
+- **content 系は “グリッド全体のサイズが親より小さい時だけ効く”**<br>
+  **`→ 重要！横幅 or 高さがピッタリ埋まっている場合は何も起きない`**<br>
+- gap によって見た目が大きく変わるため注意<br>
+- auto-fit / auto-fill と組み合わせると stretch が起きにくい<br>
+- Flex の justify-content と名前は同じでも動作が違う<br>
+`→ グリッドは空白の扱いが Flex と別`<br>
+
+## Grid のまとめ（Flex との使い分け）
+
+説明<br>
+ここまで Grid の基本 → 応用 → 揃え → UI パターンまで扱ってきた。<br>
+この節では **Grid 全体の総復習**と<br>
+**Flex と Grid のどちらを選ぶべきか（実務的判断基準） **を整理する。<br>
+レイアウトではどちらも使われるため、違いを理解しておくことは重要。<br>
+
+**Grid の特徴（まとめ）**
+| 特徴                         | 内容                                                 |
+| ---------------------------- | ---------------------------------------------------- |
+| **2方向レイアウト**          | 横・縦の両軸でマス目をコントロール可能               |
+| **セルサイズをコントロール** | columns / rows / gap を使い縦横の比率を制御          |
+| **複数行・複数列が自然**     | カード・タイル・画像ギャラリーに最適                 |
+| **空白の扱いが明確**         | justify-content / align-content で空きスペースを制御 |
+| **固定幅＋可変幅が簡単**     | 240px + 1fr、minmax()、repeat() が直感的             |
+| **複雑なパネル配置に強い**   | span で“2列分使う”などが柔軟に実現できる             |
+
+**Flex の特徴（まとめ）**
+| 特徴                             | 内容                                   |
+| -------------------------------- | -------------------------------------- |
+| **1方向レイアウト**              | 横一列・縦一列を並べるのが基本         |
+| **可変幅が得意**                 | 余白の均等割り、順番変更など UI で便利 |
+| **コンテンツ量に応じた自動伸縮** | テキストやボタンの配置に向いている     |
+| **要素どうしの関係調整が得意**   | justify / align / gap により整列が簡単 |
+
+### Grid と Flex の使い分け（実務基準）
+**Grid を使うべき場面**<br>
+- カード・画像・タイルなど 複数行 × 複数列のレイアウト<br>
+- PC / タブレット / スマホで 列数が自然に変化する UI<br>
+- 固定幅＋可変幅を組み合わせたい場合<br>
+- 管理画面・ダッシュボードなど僅差の配置が必要<br>
+- span（2列使う等）が必要な構造<br>
+- 中心寄せギャラリーなど空白処理が必要な時<br>
+`→ レイアウト設計そのものが目的なら Grid が最適。`<br>
+
+**Flex を使うべき場面**<br>
+- ナビゲーションバー（横並び）<br>
+- ボタンの横並び<br>
+- インライン要素の中央寄せ<br>
+- 1行の順番調整（order）<br>
+- 要素どうしの距離をそろえたい時<br>
+- テキスト量に左右される自然な伸縮が必要な時<br>
+`→ UI 部品単位の調整は Flex が基本。`<br>
+
+**Grid / Flex 併用の実務パターン**
+実務では両方を組み合わせることが多い。
+例：
+- カード一覧は Grid
+- カード内部の「画像 + タイトル + ボタン」は Flex
+- ヘッダーは Flex
+- メインは Grid（2〜3カラム）
+- フッターのリンク群は Flex
+
+**よくある落とし穴（注意点）**<br>
+- **Grid は高さ方向が “必要な時しか content が効かない”**<br>
+`→ 横幅がピッタリだと justify-content が効かない`<br>
+`→ 高さピッタリだと align-content が効かない`<br>
+- **Flex と Grid の stretch が別物**<br>
+`→ Grid はセルを強制伸張する`<br>
+`→ Flex は残余スペースの配分`<br>
+- **Grid を「縦一列のUI」に使うと逆に複雑になる**<br>
+`→ 縦並び中心のUIは Flex の方が自然`<br>
+-  **auto-fit と auto-fill の違い**<br>
+`→ 似ているが余白の扱いが別（要復習）`<br>
+
+

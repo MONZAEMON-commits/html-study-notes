@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Content Demo</title>
+    <link rel="stylesheet" href="grid-content-demo.css" />
+</head>
+
+<body>
+
+    <h1>Grid Content Demo（justify-content / align-content）</h1>
+
+    <p class="note">
+        各パターンは Grid の「グリッド全体の揃え（content 系）」の挙動を比較するためのものです。<br>
+        <strong>※ items 系（セル内部の揃え）ではありません。</strong><br>
+        グリッド自体のサイズが小さいため、中央寄せ・均等配置・端寄せの違いが視覚的にわかります。
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- 横方向：justify-content -->
+    <!-- ========================================================= -->
+    <h2>1. justify-content（横方向）</h2>
+
+    <div class="example-title">start</div>
+    <div class="grid grid-justify-start">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">center</div>
+    <div class="grid grid-justify-center">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">end</div>
+    <div class="grid grid-justify-end">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">space-between</div>
+    <div class="grid grid-justify-between">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">space-around</div>
+    <div class="grid grid-justify-around">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">space-evenly</div>
+    <div class="grid grid-justify-evenly">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 縦方向：align-content -->
+    <!-- ========================================================= -->
+    <h2>2. align-content（縦方向）</h2>
+
+    <div class="example-title">start</div>
+    <div class="grid-vertical grid-align-start">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">center</div>
+    <div class="grid-vertical grid-align-center">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">end</div>
+    <div class="grid-vertical grid-align-end">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">space-between</div>
+    <div class="grid-vertical grid-align-between">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">space-around</div>
+    <div class="grid-vertical grid-align-around">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+    <div class="example-title">space-evenly</div>
+    <div class="grid-vertical grid-align-evenly">
+        <div>A</div>
+        <div>B</div>
+        <div>C</div>
+    </div>
+
+</body>
+
+</html>
